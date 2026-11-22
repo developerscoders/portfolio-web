@@ -25,6 +25,64 @@ function SectionKicker({ number, label }: { number: string; label: string }) {
   return <div className="pf-kicker"><span>{number}</span><i />{label}</div>
 }
 
+function AvatarWelcome() {
+  const [pupil, setPupil] = useState({ x: 0, y: 0 })
+  const [speaking, setSpeaking] = useState(false)
+  const [speechAvailable, setSpeechAvailable] = useState(false)
+  const welcome = "Hey, I'm Pallav. Welcome to my digital residence! I'm a full-stack developer and AI builder. Feel free to explore my work, projects and experience. Let's build something amazing together."
+
+  const speak = () => {
+    if (!('speechSynthesis' in window)) return
+    window.speechSynthesis.cancel()
+    const message = new SpeechSynthesisUtterance(welcome)
+    message.lang = 'en-IN'
+    message.rate = 0.96
+    message.pitch = 1.02
+    const voice = window.speechSynthesis.getVoices().find(item => item.lang.toLowerCase().startsWith('en-in'))
+    if (voice) message.voice = voice
+    message.onstart = () => setSpeaking(true)
+    message.onend = () => setSpeaking(false)
+    message.onerror = () => setSpeaking(false)
+    window.speechSynthesis.speak(message)
+  }
+
+  useEffect(() => {
+    const supported = 'speechSynthesis' in window
+    setSpeechAvailable(supported)
+    if (!supported) return
+    const timer = window.setTimeout(speak, 1500)
+    return () => {
+      window.clearTimeout(timer)
+      window.speechSynthesis.cancel()
+    }
+  }, [])
+
+  const trackEyes = (event: React.PointerEvent<HTMLDivElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect()
+    const x = ((event.clientX - rect.left) / rect.width - 0.5) * 2
+    const y = ((event.clientY - rect.top) / rect.height - 0.5) * 2
+    setPupil({ x: Math.max(-1, Math.min(1, x)), y: Math.max(-1, Math.min(1, y)) })
+  }
+
+  return <aside className="pf-avatar-welcome" aria-label="Pallav's speaking avatar">
+    <div className="pf-avatar-card">
+      <div className="pf-avatar-image-wrap" onPointerMove={trackEyes} onPointerLeave={() => setPupil({ x: 0, y: 0 })}>
+        <img src="/pallav-avatar.jpg" alt="Pallav wearing a black sweatshirt with a bronze N emblem" className="pf-avatar-image" />
+        <span className="pf-avatar-eye pf-avatar-eye-left"><i style={{ transform: `translate(${pupil.x * 2.4}px, ${pupil.y * 1.8}px)` }} /></span>
+        <span className="pf-avatar-eye pf-avatar-eye-right"><i style={{ transform: `translate(${pupil.x * 2.4}px, ${pupil.y * 1.8}px)` }} /></span>
+        <span className="pf-avatar-live"><i /> LIVE AVATAR</span>
+      </div>
+      <div className="pf-avatar-message">
+        <span className="pf-avatar-label">A QUICK HELLO FROM PALLAV</span>
+        <p>Hey, welcome in. Take a look around — this is where I build, experiment and bring ideas to life.</p>
+        <button type="button" onClick={speak} disabled={!speechAvailable} className={speaking ? 'pf-avatar-speak is-speaking' : 'pf-avatar-speak'}>
+          <span>{speaking ? 'SPEAKING…' : '▶  HEAR MY WELCOME'}</span><i />
+        </button>
+      </div>
+    </div>
+  </aside>
+}
+
 export default function PortfolioExperience() {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [active, setActive] = useState(0)
@@ -94,6 +152,7 @@ export default function PortfolioExperience() {
       <div className="pf-scene-indicator"><span>{activeScene.number}</span><i />{activeScene.label}</div>
 
       <section id="home" data-scene="home" className="pf-section pf-hero">
+        <AvatarWelcome />
         <div className="pf-content pf-hero-content">
           <SectionKicker number="01" label="SOFTWARE ENGINEER · AI BUILDER" />
           <h1>Ideas become<br/><em>experiences.</em></h1>
