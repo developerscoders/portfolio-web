@@ -1,5 +1,5 @@
-import PortfolioExperience from './components/PortfolioExperience'
+import PortfolioSlides from './components/PortfolioSlides'
 
 export default function App() {
-  return <PortfolioExperience />
+  return <PortfolioSlides />
 }
