@@ -16,9 +16,10 @@ const projects = [
   { name: 'Uvilox AI', type: 'REAL-TIME VOICE AI', description: 'A real-time voice AI calling system using Deepgram speech services, Twilio and asynchronous FastAPI WebSockets. Built for responsive conversations under 800 ms, with MongoDB-backed multi-turn context and transcripts.', stack: ['Python', 'FastAPI', 'Deepgram', 'Twilio', 'WebSockets', 'MongoDB'] },
   { name: 'DevForge', type: 'MULTI-AGENT AI DEVELOPMENT', description: 'A multi-agent development platform coordinating coder, reviewer and testing agents through Redis Pub/Sub and Docker, with streamed results in a React interface. Reduced concurrent task latency by 35%.', stack: ['FastAPI', 'Redis', 'Docker', 'React', 'NVIDIA NIM'] },
   { name: 'BillKaro', type: 'GST BILLING PLATFORM', description: 'A GST billing application with JWT-secured workflows, automated GST calculations, Razorpay payments, PDF invoices and WhatsApp invoice sharing through an Expo app.', stack: ['Java 17', 'Spring Boot', 'MongoDB', 'JWT', 'React Native', 'Razorpay'] },
+  { name: 'RecruitFlow AI', type: 'RECRUITER WORKFLOW SAAS', description: 'A recruiter-focused platform for candidate tracking and timely follow-ups, with organization-scoped workflows, AI-assisted follow-up drafting and email automation integrations.', stack: ['React', 'TypeScript', 'Tailwind CSS', 'Express', 'MongoDB Atlas', 'n8n'] },
 ]
 
-const additionalProjects = ['RecruitFlow AI', 'Calmly AI', 'Mediverse.AI', 'TrustFlow AI']
+const additionalProjects = ['Calmly AI · Stress-management project', 'Mediverse.AI · Medical-track hackathon project', 'TrustFlow AI · AI product project']
 
 function SectionKicker({ number, label }: { number: string; label: string }) {
   return <div className="pf-kicker"><span>{number}</span><i />{label}</div>
@@ -64,7 +65,7 @@ export default function PortfolioExperience() {
   return (
     <main className="portfolio-experience">
       <div className="pf-film" aria-hidden="true">
-        <video ref={videoRef} className={videoReady ? 'pf-film-video is-ready' : 'pf-film-video'} muted playsInline preload="none" autoPlay
+        <video ref={videoRef} className={videoReady ? 'pf-film-video is-ready' : 'pf-film-video'} muted playsInline loop preload="none" autoPlay
           onCanPlay={() => setVideoReady(true)} onPlaying={() => setVideoReady(true)}
           onError={() => { setVideoFailed(true); setVideoReady(false) }} />
         <div className="pf-film-fallback" />
