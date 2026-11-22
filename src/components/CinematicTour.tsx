@@ -37,7 +37,7 @@ export function CinematicTour({ onClose }: { onClose: () => void }) {
 
   const play = () => {
     const node = video.current
-    if (!node || failed) return
+    if (!node) return
     setFailed(false)
     setLoading(true)
     setPlaying(true)
@@ -101,7 +101,7 @@ export function CinematicTour({ onClose }: { onClose: () => void }) {
       </div>}
       <div className="cinematic-controls">
         <button className="cinematic-play" onClick={() => {
-          if (failed) { setFailed(false); setIndex(current => current); return }
+          if (failed) { setFailed(false); play(); return }
           playing ? pause() : play()
         }} aria-label={playing ? 'Pause' : 'Play'}>
           {failed ? <ArrowLeft size={16}/> : playing ? <Pause size={16}/> : <Play size={16}/>}
