@@ -1,10 +1,6 @@
-# PALLAV — Cinematic Developer Portfolio
+# PALLAV.DEV — Developer Portfolio
 
-A cinematic, chapter-based developer portfolio built with React, Vite and TypeScript. The visual direction is inspired by a premium private retreat: warm architectural light, full-screen residence footage, refined typography, quiet motion and interactive details.
-
-## Requirements
-- Node.js 20.19+ or 22.12+
-- npm
+A cinematic, developer-mode portfolio built with React, Vite and TypeScript. It combines an immersive scenic video environment with a technical interface inspired by modern code editors, terminal dashboards and engineering workspaces.
 
 ## Run locally
 ```bash
@@ -19,26 +15,26 @@ npm run preview
 ```
 
 ## Experience
-The portfolio is presented as six connected chapters:
-1. **Arrival** — introduction and a route into selected work.
-2. **The Lounge** — about, approach and product mindset.
-3. **The Workspace** — professional experience and delivery highlights.
-4. **The Library** — education, engineering toolkit and recognition.
-5. **The Gallery** — selected product and project cards.
-6. **The Terrace** — contact and next steps.
+Six chapters form one continuous portfolio:
+1. **Home / Developer Console** — scenic video backdrop, code-editor identity panel, availability status and engineering metrics.
+2. **About** — development philosophy and product mindset.
+3. **Experience** — professional work and measurable delivery.
+4. **Stack & Education** — engineering domains, education and recognition.
+5. **Projects** — selected products and technical case studies.
+6. **Contact** — direct contact and social profiles.
 
-The avatar and its speech/microphone interface have been removed. The experience now focuses on the work, the visual environment and direct navigation.
+## Visual direction
+- Cinematic scenic footage remains the full-screen environment.
+- Deep navy / teal developer-console surfaces, cyan accents and syntax-highlighted code.
+- A compact code editor panel on the home chapter.
+- Subtle animated ambient light, film grain, chapter transitions and pointer-reactive card lighting.
+- Responsive layouts and reduced-motion support.
 
-## Interaction and motion
-- Select chapters from the right-side journey rail or the Explore menu.
-- Use the arrow controls, mouse wheel, touch swipe, or keyboard arrows/PageUp/PageDown.
-- Cinematic scene changes follow the active chapter.
-- Cards use pointer-positioned warm light, border highlights and lift-on-hover.
-- Intro typography, ambient light, film grain and chapter transitions are animated.
-- Reduced-motion preferences are respected.
+## Navigation
+Use the chapter rail or Explore menu, previous/next controls, mouse wheel, touch swipe, or keyboard arrows/PageUp/PageDown. The scene player is muted by default and can be paused or unmuted.
 
 ## Video assets
-Place the six MP4 clips in `public/videos/` with these exact names:
+The six scenes use these files from `public/videos/`:
 - `01-residence-exterior.mp4`
 - `02-living-room.mp4`
 - `03-developer-studio.mp4`
@@ -46,11 +42,7 @@ Place the six MP4 clips in `public/videos/` with these exact names:
 - `05-project-gallery.mp4`
 - `06-terrace-finale.mp4`
 
-The player has a visual fallback if a clip is missing. Verify that all six MP4 files are present in the deployed build if you want the complete cinematic journey.
+The player falls back to a gradient environment if a scene cannot load. Ensure these assets are included in the deployed build.
 
-## Technical notes
-- React + TypeScript + Vite.
-- Video playback is muted by default; visitors can toggle sound.
-- Video elements are reused across chapters to avoid mounting multiple simultaneous players.
-- No external GLB or avatar model is required.
-- The portfolio content is maintained in `src/components/PortfolioSlides.tsx`; visual styling is in `src/components/slides.css`.
+## Stack
+React 19 · TypeScript · Vite · Lucide icons · CSS motion and video backgrounds.
