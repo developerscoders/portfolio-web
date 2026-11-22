@@ -119,7 +119,10 @@ export function CinematicTour({ onClose }: { onClose: () => void }) {
         setProgress(ratio)
         if (ratio >= 0.78 && nextScene) setPreloadNext(true)
       }}
-      onEnded={() => goTo(index + 1, true)}
+      onEnded={() => {
+        if (index < scenes.length - 1) goTo(index + 1, true)
+        else setPlaying(false)
+      }}
       onError={() => {
         autoAdvance.current = false
         setFailed(true)
