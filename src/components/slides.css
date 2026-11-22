@@ -457,3 +457,10 @@ button,a{font:inherit}
  .slides-video.ready{transform:none}
  .scene-progress span{transition:none}
 }
+
+
+/* Keyboard and touch usability */
+.portfolio-slides button:focus-visible,.portfolio-slides a:focus-visible{outline:2px solid #8cebf5;outline-offset:4px;box-shadow:0 0 0 5px #52d6e522}
+.portfolio-slides button:active{transform:scale(.98)}
+.slides-stage{scroll-behavior:smooth;-webkit-overflow-scrolling:touch}
+@media(hover:none){.glow-card:hover{transform:none}.glow-card:before{opacity:.35}.resort-chapter-rail button small{max-width:100px;opacity:1}}
