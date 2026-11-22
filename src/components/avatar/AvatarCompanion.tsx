@@ -81,15 +81,15 @@ function ProceduralHead({ motion }: { motion: MutableRefObject<Motion> }) {
     {/* Ears */}
     {[-1, 1].map(side => <group key={side} position={[side * 0.465, -0.06, -0.005]}><mesh scale={[0.085, 0.145, 0.075]} material={skin}><sphereGeometry args={[1, 24, 20]}/></mesh><mesh position={[0, 0, 0.054]} scale={[0.033, 0.078, 0.018]}><sphereGeometry args={[1, 16, 12]}/><meshStandardMaterial color="#865d4e"/></mesh></group>)}
     {/* Nose bridge and tip */}
-    <mesh position={[0, -0.04, 0.365]} scale={[0.075, 0.19, 0.09]} material={skin}><sphereGeometry args={[1, 24, 20]}/></mesh>
-    <mesh position={[0, -0.16, 0.405]} scale={[0.09, 0.065, 0.075]} material={skin}><sphereGeometry args={[1, 24, 18]}/></mesh>
-    {[-1, 1].map(side => <mesh key={side} position={[side * 0.052, -0.185, 0.392]} scale={[0.025, 0.015, 0.018]}><sphereGeometry args={[1, 16, 12]}/><meshStandardMaterial color="#704c42"/></mesh>)}
+    <mesh position={[0, -0.075, 0.365]} scale={[0.062, 0.105, 0.055]} material={skin}><sphereGeometry args={[1, 24, 20]}/></mesh>
+    <mesh position={[0, -0.155, 0.392]} scale={[0.072, 0.048, 0.052]} material={skin}><sphereGeometry args={[1, 24, 18]}/></mesh>
+    {[-1, 1].map(side => <mesh key={side} position={[side * 0.043, -0.177, 0.388]} scale={[0.018, 0.009, 0.012]}><sphereGeometry args={[1, 16, 12]}/><meshStandardMaterial color="#704c42"/></mesh>)}
     {/* Eyes and brows */}
     <Eye x={-0.19} motion={motion} side="left"/><Eye x={0.19} motion={motion} side="right"/>
     {[-1, 1].map(side => <mesh key={side} position={[side * 0.19, 0.225, 0.365]} rotation={[0, 0, side * -0.06]} scale={[0.13, 0.027, 0.035]} material={hair}><sphereGeometry args={[1, 24, 16]}/></mesh>)}
     {/* Beard and moustache */}
-    <mesh position={[0, -0.34, 0.245]} scale={[0.335, 0.23, 0.19]} material={hair}><sphereGeometry args={[1, 36, 24]}/></mesh>
-    <mesh position={[0, -0.23, 0.385]} scale={[0.19, 0.055, 0.035]} material={hair}><sphereGeometry args={[1, 24, 16]}/></mesh>
+    <mesh position={[0, -0.355, 0.235]} scale={[0.29, 0.17, 0.16]} material={hair}><sphereGeometry args={[1, 36, 24]}/></mesh>
+    <mesh position={[0, -0.245, 0.365]} scale={[0.145, 0.035, 0.025]} material={hair}><sphereGeometry args={[1, 24, 16]}/></mesh>
     {/* Hair cap and swept front quiff */}
     <mesh position={[0, 0.39, -0.015]} scale={[0.49, 0.30, 0.42]} material={hair}><sphereGeometry args={[1, 40, 24, 0, Math.PI * 2, 0, Math.PI * 0.72]}/></mesh>
     <mesh position={[0.02, 0.48, 0.20]} rotation={[0.22, 0, -0.12]} scale={[0.31, 0.16, 0.22]} material={hair}><sphereGeometry args={[1, 32, 20]}/></mesh>
@@ -134,7 +134,7 @@ function ProceduralBust({ motion }: { motion: MutableRefObject<Motion> }) {
 }
 
 function AvatarScene({ motion }: { motion: MutableRefObject<Motion> }) {
-  return <Canvas camera={{ position: [0, 0.05, 3.25], fov: 34 }} dpr={[1, 1.5]} gl={{ antialias: true, alpha: true, powerPreference: 'low-power' }}>
+  return <Canvas camera={{ position: [0, 0.08, 3.85], fov: 38 }} dpr={[1, 1.5]} gl={{ antialias: true, alpha: true, powerPreference: 'low-power' }}>
     <ambientLight intensity={1.45}/>
     <directionalLight position={[2, 3, 4]} intensity={2.0} color="#fff0df"/>
     <directionalLight position={[-3, 1, -2]} intensity={1.15} color="#76bfff"/>
