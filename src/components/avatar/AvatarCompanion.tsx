@@ -1,4 +1,4 @@
-import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { Suspense, useCallback, useEffect, useMemo, useRef, useState, type MutableRefObject } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 import { MessageCircle, Mic, MicOff, Volume2, X } from 'lucide-react'
@@ -29,7 +29,7 @@ type SpeechWindow = Window & {
   webkitSpeechRecognition?: new () => SpeechRecognitionLike
 }
 
-function Eye({ x, motion, side }: { x: number; motion: React.MutableRefObject<Motion>; side: 'left' | 'right' }) {
+function Eye({ x, motion, side }: { x: number; motion: MutableRefObject<Motion>; side: 'left' | 'right' }) {
   const eye = useRef<THREE.Group>(null)
   const lid = useRef<THREE.Mesh>(null)
   useFrame((_, delta) => {
@@ -41,7 +41,7 @@ function Eye({ x, motion, side }: { x: number; motion: React.MutableRefObject<Mo
     }
     if (lid.current) {
       const blinkScale = 1 - motion.current.blink * 0.96
-      lid.current.scale.y = THREE.MathUtils.damp(lid.current.scale.y, Math.max(0.035, blinkScale), 32, delta)
+      lid.current.scale.y = THREE.MathUtils.damp(lid.current.scale.y, 0.068 * Math.max(0.035, blinkScale), 32, delta)
     }
   })
   return <group position={[x, 0.105, 0.382]}>
