@@ -19,7 +19,7 @@
 .pf-avatar-card{overflow:hidden;border:1px solid #7acbff66;background:linear-gradient(150deg,#0a1c2de8,#07111de8);box-shadow:0 24px 80px #0008,0 0 38px #168bd32b;backdrop-filter:blur(18px)}
 .pf-avatar-image-wrap{position:relative;height:clamp(190px,20vw,260px);overflow:hidden;background:radial-gradient(ellipse at 50% 28%,#29455b,#0a1421 75%)}
 .pf-avatar-image{width:100%;height:100%;display:block;object-fit:cover;object-position:center 19%;filter:brightness(1.04) saturate(.96);transform:scale(1.035);mask-image:linear-gradient(#000 78%,transparent 100%)}
-.pf-avatar-eye{position:absolute;top:23.7%;width:12px;height:7px;border-radius:50%;display:grid;place-items:center;pointer-events:none}
+.pf-avatar-eye{position:absolute;top:20.6%;width:12px;height:7px;border-radius:50%;display:grid;place-items:center;pointer-events:none}
 .pf-avatar-eye-left{left:39.8%}.pf-avatar-eye-right{left:59.3%}
 .pf-avatar-eye i{display:block;width:4px;height:4px;border-radius:50%;background:#111820;box-shadow:0 0 0 1px #d9e8ef88,0 0 2px #fff;transition:transform .12s ease-out}
 .pf-avatar-live{position:absolute;left:13px;top:13px;display:flex;align-items:center;gap:7px;padding:6px 8px;background:#061321c9;border:1px solid #8acfff44;color:#b8dff8;font:7px 'DM Mono',monospace;letter-spacing:.14em}
@@ -35,5 +35,5 @@
 @keyframes pf-avatar-arrive{from{opacity:0;transform:translateY(22px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
 @keyframes pf-speaking-pulse{to{transform:scale(1.7);opacity:.45}}
 @media(max-width:1050px){.pf-avatar-welcome{right:5vw;width:220px}.pf-avatar-image-wrap{height:190px}.pf-avatar-message p{font-size:10px}}
-@media(max-width:760px){.pf-hero{align-items:flex-start;flex-direction:column}.pf-avatar-welcome{position:relative;top:auto;right:auto;order:2;width:min(100%,330px);margin:30px 0 20px auto}.pf-avatar-image-wrap{height:210px}.pf-hero-content{order:1}.pf-hero{padding-bottom:100px}.pf-avatar-eye{top:23.7%}}
+@media(max-width:760px){.pf-hero{align-items:flex-start;flex-direction:column}.pf-avatar-welcome{position:relative;top:auto;right:auto;order:2;width:min(100%,330px);margin:30px 0 20px auto}.pf-avatar-image-wrap{height:210px}.pf-hero-content{order:1}.pf-hero{padding-bottom:100px}.pf-avatar-eye{top:20.6%}}
 @media(prefers-reduced-motion:reduce){.pf-avatar-welcome{animation:none}.pf-avatar-eye i,.pf-avatar-speak i{transition:none;animation:none}}
