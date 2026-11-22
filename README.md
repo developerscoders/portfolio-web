@@ -1,6 +1,6 @@
 # PALLAV — Interactive 3D Developer Residence
 
-A futuristic, browser-based 3D portfolio foundation built with React, Vite, TypeScript, Three.js and React Three Fiber.
+A futuristic interactive portfolio built with React, Vite, TypeScript, Three.js and React Three Fiber.
 
 ## Requirements
 - Node.js 20.19+ or 22.12+
@@ -19,14 +19,23 @@ npm run preview
 ```
 
 ## Controls
-- WASD / arrow keys: move (after clicking **Enter the Residence**)
-- Shift: run
-- Drag on the 3D canvas: look around
-- First / Third buttons: switch camera
-- Fullscreen control: enter fullscreen
+- Click **Enter the Residence** to activate exploration.
+- WASD / arrow keys: move.
+- Shift: run.
+- Drag on the canvas: look around.
+- First / Third buttons: switch camera.
+- Fullscreen: expand the experience.
 
-## Current scope
-Phase 1 establishes the Vite app, 3D scene, procedural two-level residence shell, visual HUD, camera modes and basic avatar placeholder. Detailed room furnishing, realistic portrait-based rigged avatar, robust collision/physics and portfolio interaction content are planned for subsequent phases.
+## Phase 2 additions
+- Expanded two-storey glass residence shell and mezzanine.
+- Open-plan living zone with sectional seating, coffee table and floor lamp.
+- Developer studio with three monitor setup, desk, keyboard, chair and bookshelf.
+- Upper reading nook and display shelving.
+- Gallery art, indoor planting and ambient light accents.
+- Exterior terrace, reflecting pool and stylized garden trees.
 
-## Notes
-The avatar in this foundation is intentionally a geometric placeholder. Replace it with an optimized rigged GLB once the custom character asset is ready.
+## Asset approach
+The architecture and furniture are procedural Three.js geometry and physically based materials. Earlier generated/search images were used as visual direction; they are not embedded as flat image backdrops or represented as downloaded 3D assets.
+
+## Current limitations
+The character remains a geometric placeholder, not the portrait-matched rigged avatar. Collision-aware navigation, stair traversal, interactive project panels, detailed PBR texture maps and a production build verification remain follow-up work.
