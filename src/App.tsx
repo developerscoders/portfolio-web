@@ -18,22 +18,20 @@ export default function App() {
       <div className="scene-wrap">
         <Canvas shadows dpr={[1, 1.7]} camera={{ position: [9, 6, 12], fov: 42 }} gl={{ antialias: true, powerPreference: 'high-performance' }}>
           <color attach="background" args={['#050914']} />
-          <fog attach="fog" args={['#07101f', 24, 65]} />
-          <ambientLight intensity={0.55} />
-          <directionalLight position={[8, 14, 5]} intensity={2.1} castShadow shadow-mapSize={[2048, 2048]} />
-          <pointLight position={[0, 5, 0]} color="#1d8fff" intensity={18} distance={22} />
+          <fog attach="fog" args={['#07101f', 28, 72]} />
+          <ambientLight intensity={0.48} />
+          <directionalLight position={[8, 14, 5]} intensity={2.4} castShadow shadow-mapSize={[2048, 2048]} />
+          <directionalLight position={[-8, 7, -5]} intensity={0.65} color="#3a91d8" />
+          <pointLight position={[0, 5, 0]} color="#1d8fff" intensity={14} distance={26} />
           <Environment preset="night" />
-          <Stars radius={90} depth={45} count={1300} factor={2.2} saturation={0.15} fade speed={0.4} />
+          <Stars radius={90} depth={45} count={1500} factor={2.2} saturation={0.15} fade speed={0.4} />
           <Residence />
           <Avatar cameraMode={cameraMode} started={started} />
         </Canvas>
       </div>
 
       <header className="topbar">
-        <a className="brand" href="#home" aria-label="Pallav home">
-          <span className="brand-mark">P.</span>
-          <span className="brand-name">PALLAV<span className="brand-dot">.</span></span>
-        </a>
+        <a className="brand" href="#home" aria-label="Pallav home"><span className="brand-mark">P.</span><span className="brand-name">PALLAV<span className="brand-dot">.</span></span></a>
         <div className="top-center"><span className="live-dot" /> INTERACTIVE PORTFOLIO <span className="top-divider">/</span> 3D RESIDENCE</div>
         <div className="top-actions">
           <button className="icon-button" onClick={() => setSound(!sound)} aria-label="Toggle sound">{sound ? <Volume2 size={17}/> : <VolumeX size={17}/>}</button>
@@ -47,14 +45,12 @@ export default function App() {
         <h1>Ideas become<br/><span>experiences.</span></h1>
         <p className="hero-description">Welcome to my digital residence. Explore the space, discover what I build, and get to know the developer behind the screen.</p>
         <div className="hero-ctas">
-          <button className="primary-button" onClick={() => { setStarted(true); setShowControls(true) }}>
-            {started ? 'EXPLORATION ACTIVE' : 'ENTER THE RESIDENCE'} <ArrowUpRight size={17}/>
-          </button>
+          <button className="primary-button" onClick={() => { setStarted(true); setShowControls(true) }}>{started ? 'EXPLORATION ACTIVE' : 'ENTER THE RESIDENCE'} <ArrowUpRight size={17}/></button>
           <button className="text-button" onClick={() => setCameraMode(cameraMode === 'third' ? 'first' : 'third')}><Camera size={16}/> {cameraMode === 'third' ? 'THIRD PERSON' : 'FIRST PERSON'}</button>
         </div>
       </section>
 
-      <div className="scene-label"><span className="scene-label-index">01</span><span>THE RESIDENCE</span><span className="scene-label-rule"/></div>
+      <div className="scene-label"><span className="scene-label-index">02</span><span>THE RESIDENCE · INTERIORS</span><span className="scene-label-rule"/></div>
 
       <aside className="right-rail">
         <div className="rail-caption">SELECT VIEW</div>
@@ -72,7 +68,7 @@ export default function App() {
       </div>}
 
       <footer className="bottom-bar">
-        <div className="coordinates"><span className="coordinate-dot"/> <span>ENVIRONMENT ONLINE</span><span className="bottom-separator">·</span><span>BUILD 001</span></div>
+        <div className="coordinates"><span className="coordinate-dot"/> <span>ENVIRONMENT ONLINE</span><span className="bottom-separator">·</span><span>BUILD 002</span></div>
         <div className="scroll-hint">SCROLL TO EXPLORE <span>↓</span></div>
         <div className="copyright">© 2026 PALLAV BURNWAL</div>
       </footer>
