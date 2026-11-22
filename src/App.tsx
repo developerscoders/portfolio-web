@@ -1,12 +1,22 @@
-import { useState } from 'react'
+import { Suspense, lazy, useState } from 'react'
 import { Canvas } from '@react-three/fiber'
-import { Environment, Stars } from '@react-three/drei'
+import { Html } from '@react-three/drei'
 import { ArrowUpRight, Camera, Compass, Expand, Film, Github, Linkedin, Mouse, Volume2, VolumeX } from 'lucide-react'
-import { Residence } from './scene/Residence'
-import { Avatar } from './scene/Avatar'
-import { CinematicTour } from './components/CinematicTour'
+
+const Residence = lazy(() => import('./scene/Residence').then(module => ({ default: module.Residence })))
+const Avatar = lazy(() => import('./scene/Avatar').then(module => ({ default: module.Avatar })))
+const CinematicTour = lazy(() => import('./components/CinematicTour').then(module => ({ default: module.CinematicTour })))
 
 type CameraMode = 'third' | 'first'
+
+function SceneLoading() {
+  return <Html center>
+    <div className="scene-loading" role="status" aria-live="polite">
+      <span className="scene-loading-orbit"/>
+      <span>PREPARING THE RESIDENCE</span>
+    </div>
+  </Html>
+}
 
 export default function App() {
   const [cameraMode, setCameraMode] = useState<CameraMode>('third')
@@ -18,17 +28,23 @@ export default function App() {
   return (
     <main className="experience">
       <div className="scene-wrap">
-        <Canvas shadows dpr={[1, 1.7]} camera={{ position: [9, 6, 12], fov: 42 }} gl={{ antialias: true, powerPreference: 'high-performance' }}>
+        <Canvas
+          shadows={false}
+          dpr={[1, 1.25]}
+          camera={{ position: [9, 6, 12], fov: 42, near: 0.1, far: 100 }}
+          gl={{ antialias: false, powerPreference: 'low-power', stencil: false, depth: true }}
+          performance={{ min: 0.65 }}
+        >
           <color attach="background" args={['#050914']} />
           <fog attach="fog" args={['#07101f', 28, 72]} />
-          <ambientLight intensity={0.48} />
-          <directionalLight position={[8, 14, 5]} intensity={2.4} castShadow shadow-mapSize={[2048, 2048]} />
-          <directionalLight position={[-8, 7, -5]} intensity={0.65} color="#3a91d8" />
-          <pointLight position={[0, 5, 0]} color="#1d8fff" intensity={14} distance={26} />
-          <Environment preset="night" />
-          <Stars radius={90} depth={45} count={1500} factor={2.2} saturation={0.15} fade speed={0.4} />
-          <Residence />
-          <Avatar cameraMode={cameraMode} started={started} />
+          <ambientLight intensity={0.62} />
+          <directionalLight position={[8, 14, 5]} intensity={1.65} />
+          <directionalLight position={[-8, 7, -5]} intensity={0.42} color="#3a91d8" />
+          <pointLight position={[0, 5, 0]} color="#1d8fff" intensity={7} distance={26} />
+          <Suspense fallback={<SceneLoading/>}>
+            <Residence />
+            <Avatar cameraMode={cameraMode} started={started} />
+          </Suspense>
         </Canvas>
       </div>
 
@@ -71,11 +87,11 @@ export default function App() {
       </div>}
 
       <footer className="bottom-bar">
-        <div className="coordinates"><span className="coordinate-dot"/> <span>ENVIRONMENT ONLINE</span><span className="bottom-separator">·</span><span>BUILD 003</span></div>
+        <div className="coordinates"><span className="coordinate-dot"/> <span>ENVIRONMENT ONLINE</span><span className="bottom-separator">·</span><span>BUILD 004 · OPTIMIZED</span></div>
         <div className="scroll-hint">SCROLL TO EXPLORE <span>↓</span></div>
         <div className="copyright">© 2026 PALLAV BURNWAL</div>
       </footer>
-      {cinematic && <CinematicTour onClose={() => setCinematic(false)} />}
+      {cinematic && <Suspense fallback={<div className="cinematic-loading">LOADING CINEMATIC PLAYER…</div>}><CinematicTour onClose={() => setCinematic(false)} /></Suspense>}
     </main>
   )
 }
