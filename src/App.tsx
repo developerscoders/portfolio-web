@@ -27,7 +27,7 @@ export default function App() {
 
   return (
     <main className="experience">
-      <div className="scene-wrap">
+      {!cinematic && <div className="scene-wrap">
         <Canvas
           shadows={false}
           dpr={[1, 1.25]}
@@ -46,7 +46,7 @@ export default function App() {
             <Avatar cameraMode={cameraMode} started={started} />
           </Suspense>
         </Canvas>
-      </div>
+      </div>}
 
       <header className="topbar">
         <a className="brand" href="#home" aria-label="Pallav home"><span className="brand-mark">P.</span><span className="brand-name">PALLAV<span className="brand-dot">.</span></span></a>
