@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { Environment, Stars } from '@react-three/drei'
-import { ArrowUpRight, Camera, Compass, Expand, Github, Linkedin, Mouse, Volume2, VolumeX } from 'lucide-react'
+import { ArrowUpRight, Camera, Compass, Expand, Film, Github, Linkedin, Mouse, Volume2, VolumeX } from 'lucide-react'
 import { Residence } from './scene/Residence'
 import { Avatar } from './scene/Avatar'
+import { CinematicTour } from './components/CinematicTour'
 
 type CameraMode = 'third' | 'first'
 
@@ -12,6 +13,7 @@ export default function App() {
   const [started, setStarted] = useState(false)
   const [sound, setSound] = useState(false)
   const [showControls, setShowControls] = useState(true)
+  const [cinematic, setCinematic] = useState(false)
 
   return (
     <main className="experience">
@@ -47,10 +49,11 @@ export default function App() {
         <div className="hero-ctas">
           <button className="primary-button" onClick={() => { setStarted(true); setShowControls(true) }}>{started ? 'EXPLORATION ACTIVE' : 'ENTER THE RESIDENCE'} <ArrowUpRight size={17}/></button>
           <button className="text-button" onClick={() => setCameraMode(cameraMode === 'third' ? 'first' : 'third')}><Camera size={16}/> {cameraMode === 'third' ? 'THIRD PERSON' : 'FIRST PERSON'}</button>
+          <button className="text-button film-trigger" onClick={() => setCinematic(true)}><Film size={16}/> WATCH CINEMATIC TOUR</button>
         </div>
       </section>
 
-      <div className="scene-label"><span className="scene-label-index">02</span><span>THE RESIDENCE · INTERIORS</span><span className="scene-label-rule"/></div>
+      <div className="scene-label"><span className="scene-label-index">01</span><span>THE RESIDENCE · INTERACTIVE WORLD</span><span className="scene-label-rule"/></div>
 
       <aside className="right-rail">
         <div className="rail-caption">SELECT VIEW</div>
@@ -68,10 +71,11 @@ export default function App() {
       </div>}
 
       <footer className="bottom-bar">
-        <div className="coordinates"><span className="coordinate-dot"/> <span>ENVIRONMENT ONLINE</span><span className="bottom-separator">·</span><span>BUILD 002</span></div>
+        <div className="coordinates"><span className="coordinate-dot"/> <span>ENVIRONMENT ONLINE</span><span className="bottom-separator">·</span><span>BUILD 003</span></div>
         <div className="scroll-hint">SCROLL TO EXPLORE <span>↓</span></div>
         <div className="copyright">© 2026 PALLAV BURNWAL</div>
       </footer>
+      {cinematic && <CinematicTour onClose={() => setCinematic(false)} />}
     </main>
   )
 }
