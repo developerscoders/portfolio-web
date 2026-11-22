@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react'
 import { ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, BriefcaseBusiness, Code2, Cpu, ExternalLink, Github, GraduationCap, Linkedin, Mail, MapPin, Pause, Play, Sparkles, Sun, Trophy, Volume2, VolumeX, Waves, Wind, Compass, Layers3 } from 'lucide-react'
 import './slides.css'
 
@@ -25,7 +25,7 @@ const skillGroups = [
   { title: 'DATA & INFRASTRUCTURE', icon: Cpu, items: ['MongoDB', 'MySQL', 'Redis', 'Docker', 'Azure', 'CI/CD'] },
   { title: 'AI & REAL-TIME', icon: Sparkles, items: ['LLM integrations', 'LiveKit', 'Deepgram', 'YOLOv8', 'NVIDIA NIM', 'Automation'] },
 ]
-function pointerGlow(event: React.PointerEvent<HTMLElement>) {
+function pointerGlow(event: ReactPointerEvent<HTMLElement>) {
   const bounds = event.currentTarget.getBoundingClientRect()
   event.currentTarget.style.setProperty('--mx', `${event.clientX - bounds.left}px`)
   event.currentTarget.style.setProperty('--my', `${event.clientY - bounds.top}px`)
