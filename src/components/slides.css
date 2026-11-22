@@ -371,3 +371,96 @@ button,a{font:inherit}
  .experience-list article{padding:15px}
  .experience-list p,.experience-list li{font-size:12px}
 }
+
+
+/* CINEMATIC CHAPTER MOTION + VIEWPORT POLISH */
+.scene-progress{position:absolute;z-index:50;top:0;left:0;right:0;height:2px;background:#d8f7fa18;pointer-events:none}
+.scene-progress span{display:block;height:100%;background:linear-gradient(90deg,#58d6e8,#b5f3e7);box-shadow:0 0 14px #6de3f5a8;transition:width .85s cubic-bezier(.2,.75,.2,1)}
+.slides-video.ready{animation:scene-video-reveal 1.4s ease both;transform-origin:center}
+.slides-video-layer:after{content:"";position:absolute;inset:-20%;pointer-events:none;background:linear-gradient(112deg,transparent 36%,#b9f5f01a 48%,transparent 59%);transform:translateX(-65%);animation:landscape-sheen 13s ease-in-out infinite}
+.resort-light-orb{animation:orb-breathe 10s ease-in-out infinite alternate,orb-drift 24s ease-in-out infinite alternate}
+.resort-vignette{transition:box-shadow 1s ease}
+.slides-enter{animation:chapter-cinematic-in .95s cubic-bezier(.16,.78,.2,1) both;transform-origin:50% 55%}
+.slides-enter .resort-room-label{animation:detail-rise .65s .08s both}
+.slides-enter .resort-kicker{animation:detail-rise .65s .14s both}
+.slides-enter h1,.slides-enter h2{animation:headline-reveal .9s .16s cubic-bezier(.16,.78,.2,1) both}
+.slides-enter .chapter-lead,.slides-enter .chapter-copy{animation:detail-rise .72s .28s both}
+.slides-enter .hero-cta-row,.slides-enter .finale-links{animation:detail-rise .72s .38s both}
+.slides-enter .developer-code-window{animation:console-enter .9s .26s cubic-bezier(.16,.78,.2,1) both}
+.slides-enter .developer-metrics>div,.slides-enter .story-facts>div,.slides-enter .experience-list article,.slides-enter .education-strip article,.slides-enter .skill-card,.slides-enter .project-card{animation:card-arrive .72s cubic-bezier(.16,.78,.2,1) both}
+.slides-enter .developer-metrics>div:nth-child(2),.slides-enter .story-facts>div:nth-child(2),.slides-enter .experience-list article:nth-child(2),.slides-enter .education-strip article:nth-child(2),.slides-enter .skill-card:nth-child(2),.slides-enter .project-card:nth-child(2){animation-delay:.12s}
+.slides-enter .developer-metrics>div:nth-child(3),.slides-enter .story-facts>div:nth-child(3),.slides-enter .skill-card:nth-child(3),.slides-enter .project-card:nth-child(3){animation-delay:.2s}
+.slides-enter .developer-metrics>div:nth-child(4),.slides-enter .skill-card:nth-child(4),.slides-enter .project-card:nth-child(4){animation-delay:.28s}
+.slides-enter .project-card:nth-child(5){animation-delay:.34s}
+.slides-enter .project-card:nth-child(6){animation-delay:.4s}
+.resort-chapter-rail button{transition:transform .28s ease,color .28s ease}
+.resort-chapter-rail button:hover{transform:translateX(-5px)}
+.resort-chapter-rail button.active>span{color:#e7fbff;text-shadow:0 0 12px #75e5f4}
+.slides-arrows button{position:relative;overflow:hidden}
+.slides-arrows button:after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent,#d8faff48,transparent);transform:translateX(-130%);transition:transform .5s ease}
+.slides-arrows button:hover:after{transform:translateX(130%)}
+.resort-primary{position:relative;overflow:hidden}
+.resort-primary:after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 25%,#fff8 48%,transparent 70%);transform:translateX(-130%);transition:transform .65s ease}
+.resort-primary:hover:after{transform:translateX(130%)}
+.glow-card:after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;background:linear-gradient(130deg,#ffffff0a,transparent 38%);opacity:.55;transition:opacity .35s}
+.glow-card:hover:after{opacity:1}
+.code-window-live svg{animation:status-flicker 2.4s ease-in-out infinite}
+.chapter-view-hint{position:absolute;z-index:7;left:50%;bottom:79px;display:flex;align-items:center;gap:12px;transform:translateX(-50%);color:#c6e0e2;font:9px 'DM Mono',monospace;letter-spacing:.15em;opacity:.7;pointer-events:none;animation:hint-float 2.8s ease-in-out infinite}
+.chapter-view-hint i{display:block;width:28px;height:1px;background:#73dce9;transform-origin:left;animation:hint-line 2.8s ease-in-out infinite}
+.resort-footer>span:first-child{max-width:38%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@keyframes chapter-cinematic-in{0%{opacity:0;transform:translate3d(0,38px,0) scale(.975);filter:blur(9px)}65%{opacity:1;filter:blur(0)}100%{opacity:1;transform:translate3d(0,0,0) scale(1)}}
+@keyframes headline-reveal{0%{opacity:0;transform:translateY(25px);clip-path:inset(0 0 35% 0)}100%{opacity:1;transform:translateY(0);clip-path:inset(0)}}
+@keyframes detail-rise{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+@keyframes card-arrive{from{opacity:0;transform:translateY(22px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes console-enter{0%{opacity:0;transform:translate3d(25px,18px,0) scale(.96);filter:blur(5px)}100%{opacity:1;transform:translate3d(0,0,0) scale(1);filter:blur(0)}}
+@keyframes scene-video-reveal{from{transform:scale(1.055);filter:saturate(.65) brightness(.55)}to{transform:scale(1);filter:saturate(.88) brightness(.72) contrast(1.08)}}
+@keyframes landscape-sheen{0%,25%{transform:translateX(-75%);opacity:0}45%{opacity:1}70%,100%{transform:translateX(75%);opacity:0}}
+@keyframes orb-drift{from{translate:-2% -1%}to{translate:4% 5%}}
+@keyframes status-flicker{0%,100%{opacity:1}50%{opacity:.45}}
+@keyframes hint-float{0%,100%{opacity:.4;translate:0 0}50%{opacity:.95;translate:0 5px}}
+@keyframes hint-line{0%,100%{scale:1 1}50%{scale:1.5 1}}
+@media(max-width:760px){
+ .chapter-view-hint{bottom:62px;font-size:8px;letter-spacing:.1em}
+ .resort-footer>span:first-child{max-width:43%}
+ .resort-chapter-rail{right:12px;top:50%;gap:8px}
+ .resort-chapter-rail .rail-title,.resort-chapter-rail button small{display:none}
+ .resort-chapter-rail button{grid-template-columns:19px 22px;gap:5px;min-height:24px}
+ .resort-chapter-rail button>span{font-size:9px}
+ .resort-chapter-rail button i{width:14px}
+ .resort-chapter-rail button:hover i,.resort-chapter-rail button.active i{width:22px}
+ .slides-stage{padding-right:52px}
+ .slides-arrows{right:14px;bottom:65px}
+ .resort-corner-mark{display:none}
+}
+@media(max-width:520px){
+ .slides-header{padding:0 15px}
+ .slides-header-center{display:none}
+ .slides-header-actions{gap:13px}
+ .slides-header-actions button,.slides-header-actions a{min-width:30px;min-height:34px}
+ .slides-stage{padding-left:16px;padding-right:43px}
+ .resort-room-label{margin-bottom:18px}
+ .resort-footer>span:last-child{display:none}
+ .resort-footer>span:first-child{max-width:52%;font-size:7px}
+ .slides-bottom-center{gap:8px}
+ .slides-bottom-center button{font-size:7px}
+ .chapter-view-hint{left:45%;bottom:60px;white-space:nowrap}
+ .resort-chapter-rail{right:7px}
+ .slides-arrows{right:10px;bottom:61px}
+}
+@media(max-height:680px) and (min-width:761px){
+ .slides-stage{padding-top:12px;padding-bottom:16px}
+ .resort-room-label{margin-bottom:15px;padding-bottom:8px}
+ .chapter-view-hint{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+ .slides-enter,.slides-enter *,.resort-grain,.resort-light-orb,.slides-video-layer:after,.chapter-view-hint,.chapter-view-hint i,.code-window-live svg{animation:none!important;transition:none!important}
+ .slides-video.ready{transform:none}
+ .scene-progress span{transition:none}
+}
+
+
+/* Keyboard and touch usability */
+.portfolio-slides button:focus-visible,.portfolio-slides a:focus-visible{outline:2px solid #8cebf5;outline-offset:4px;box-shadow:0 0 0 5px #52d6e522}
+.portfolio-slides button:active{transform:scale(.98)}
+.slides-stage{scroll-behavior:smooth;-webkit-overflow-scrolling:touch}
+@media(hover:none){.glow-card:hover{transform:none}.glow-card:before{opacity:.35}.resort-chapter-rail button small{max-width:100px;opacity:1}}
