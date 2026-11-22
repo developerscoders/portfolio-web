@@ -1,4 +1,4 @@
-import { Suspense, lazy, useState } from 'react'
+import { Suspense, lazy, useCallback, useState } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { Html } from '@react-three/drei'
 import { ArrowUpRight, Camera, Compass, Expand, Film, Github, Linkedin, Mouse, Volume2, VolumeX } from 'lucide-react'
@@ -24,6 +24,7 @@ export default function App() {
   const [sound, setSound] = useState(false)
   const [showControls, setShowControls] = useState(true)
   const [cinematic, setCinematic] = useState(false)
+  const closeCinematic = useCallback(() => setCinematic(false), [])
 
   return (
     <main className="experience">
@@ -92,7 +93,7 @@ export default function App() {
         <div className="scroll-hint">SCROLL TO EXPLORE <span>↓</span></div>
         <div className="copyright">© 2026 PALLAV BURNWAL</div>
       </footer>
-      {cinematic && <Suspense fallback={<div className="cinematic-loading">LOADING CINEMATIC PLAYER…</div>}><CinematicTour onClose={() => setCinematic(false)} /></Suspense>}
+      {cinematic && <Suspense fallback={<div className="cinematic-loading">LOADING CINEMATIC PLAYER…</div>}><CinematicTour onClose={closeCinematic} /></Suspense>}
     </main>
   )
 }
