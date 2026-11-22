@@ -62,12 +62,9 @@ function ContactForm() {
   }
   return <form className="contact-form glow-card" onSubmit={onSubmit} onPointerMove={pointerGlow}>
     <div className="contact-form-heading"><span> <Mail size={15}/> SEND A MESSAGE</span><small>Usually replies within 1–2 business days</small></div>
-    <label htmlFor="contact-name">YOUR NAME</label>
-    <input id="contact-name" name="name" type="text" placeholder="How should I address you?" autoComplete="name" required/>
-    <label htmlFor="contact-email">EMAIL ADDRESS</label>
-    <input id="contact-email" name="email" type="email" placeholder="you@example.com" autoComplete="email" required/>
-    <label htmlFor="contact-message">WHAT'S ON YOUR MIND?</label>
-    <textarea id="contact-message" name="message" rows={4} placeholder="Tell me a little about your idea, project or opportunity…" required/>
+    <div className="contact-field"><label htmlFor="contact-name">YOUR NAME</label><input id="contact-name" name="name" type="text" placeholder="How should I address you?" autoComplete="name" required/></div>
+    <div className="contact-field"><label htmlFor="contact-email">EMAIL ADDRESS</label><input id="contact-email" name="email" type="email" placeholder="you@example.com" autoComplete="email" required/></div>
+    <div className="contact-field contact-message-field"><label htmlFor="contact-message">WHAT'S ON YOUR MIND?</label><textarea id="contact-message" name="message" rows={4} placeholder="Tell me a little about your idea, project or opportunity…" required/></div>
     <button className="resort-primary contact-submit" type="submit" disabled={sending}>{sending ? 'SENDING…' : 'SEND MESSAGE'} <ArrowUpRight size={16}/></button>
     <p className="contact-form-status" role="status" aria-live="polite">{result}</p>
   </form>
