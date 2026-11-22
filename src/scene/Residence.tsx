@@ -1,114 +1,117 @@
 import { useMemo } from 'react'
 import * as THREE from 'three'
+import { Interior } from './Interior'
 
-function NeonLine({ position, rotation = [0, 0, 0], length = 1 }: { position: [number, number, number]; rotation?: [number, number, number]; length?: number }) {
+function Neon({ position, rotation = [0, 0, 0], size = [1, 0.025, 0.035] }: {
+  position: [number, number, number]; rotation?: [number, number, number]; size?: [number, number, number]
+}) {
   return <mesh position={position} rotation={rotation}>
-    <boxGeometry args={[length, 0.025, 0.035]} />
-    <meshStandardMaterial color="#43baff" emissive="#078cff" emissiveIntensity={4.5} toneMapped={false}/>
+    <boxGeometry args={size}/>
+    <meshStandardMaterial color="#6acfff" emissive="#078cff" emissiveIntensity={3.2} toneMapped={false}/>
   </mesh>
 }
 
-function GlassPanel({ position, size }: { position: [number, number, number]; size: [number, number, number] }) {
+function Glass({ position, size }: { position: [number, number, number]; size: [number, number, number] }) {
+  return <mesh position={position} castShadow receiveShadow>
+    <boxGeometry args={size}/>
+    <meshPhysicalMaterial color="#9bdcff" metalness={0.18} roughness={0.12} transmission={0.22} thickness={0.12} transparent opacity={0.2} ior={1.46} envMapIntensity={1.4}/>
+  </mesh>
+}
+
+function Frame({ position, size, color = '#657b90' }: { position: [number, number, number]; size: [number, number, number]; color?: string }) {
   return <mesh position={position} castShadow>
     <boxGeometry args={size}/>
-    <meshPhysicalMaterial color="#80cfff" metalness={0.12} roughness={0.08} transmission={0.42} thickness={0.18} transparent opacity={0.34} ior={1.45}/>
+    <meshStandardMaterial color={color} metalness={0.78} roughness={0.24}/>
   </mesh>
+}
+
+function Tree({ position, scale = 1 }: { position: [number, number, number]; scale?: number }) {
+  return <group position={position} scale={scale}>
+    <mesh position={[0, 1.15, 0]} castShadow><cylinderGeometry args={[0.12, 0.2, 2.3, 10]}/><meshStandardMaterial color="#3d4b4d" roughness={0.95}/></mesh>
+    <mesh position={[0, 2.45, 0]} castShadow><sphereGeometry args={[0.95, 16, 14]}/><meshStandardMaterial color="#173e39" roughness={0.95}/></mesh>
+    <mesh position={[-0.42, 2.15, 0.15]} castShadow><sphereGeometry args={[0.62, 14, 12]}/><meshStandardMaterial color="#205448" roughness={0.95}/></mesh>
+    <mesh position={[0.42, 2.2, -0.12]} castShadow><sphereGeometry args={[0.68, 14, 12]}/><meshStandardMaterial color="#28634f" roughness={0.95}/></mesh>
+    <mesh position={[0, 2.95, 0.05]} castShadow><sphereGeometry args={[0.55, 14, 12]}/><meshStandardMaterial color="#2a6a53" roughness={0.95}/></mesh>
+  </group>
+}
+
+function Pool() {
+  return <group position={[0, 0, 9.2]}>
+    <mesh position={[0, -0.06, 0]}><boxGeometry args={[18, 0.32, 4.4]}/><meshStandardMaterial color="#263c50" metalness={0.6} roughness={0.28}/></mesh>
+    <mesh position={[0, 0.12, 0]} rotation={[-Math.PI / 2, 0, 0]}><planeGeometry args={[17.5, 4.0]}/><meshPhysicalMaterial color="#062b49" metalness={0.48} roughness={0.1} clearcoat={1} clearcoatRoughness={0.05} envMapIntensity={1.8}/></mesh>
+    {[-8.8, 8.8].map(x => <Neon key={x} position={[x, 0.16, 0]} size={[0.04, 0.035, 4.1]}/>)}
+    <Neon position={[0, 0.16, -2]} size={[17.5, 0.035, 0.035]}/>
+    <Neon position={[0, 0.16, 2]} size={[17.5, 0.035, 0.035]}/>
+  </group>
 }
 
 export function Residence() {
-  const groundMat = useMemo(() => new THREE.MeshStandardMaterial({ color: '#111b2a', roughness: 0.3, metalness: 0.45 }), [])
-  const wallMat = useMemo(() => new THREE.MeshStandardMaterial({ color: '#17263a', roughness: 0.38, metalness: 0.28 }), [])
-  const concreteMat = useMemo(() => new THREE.MeshStandardMaterial({ color: '#596575', roughness: 0.82 }), [])
-
+  const floor = useMemo(() => new THREE.MeshStandardMaterial({ color: '#17283a', roughness: 0.27, metalness: 0.32 }), [])
+  const concrete = useMemo(() => new THREE.MeshStandardMaterial({ color: '#536477', roughness: 0.78, metalness: 0.12 }), [])
+  const dark = useMemo(() => new THREE.MeshStandardMaterial({ color: '#101c2a', roughness: 0.36, metalness: 0.42 }), [])
   return <group>
-    {/* Reflective site plinth and approach */}
-    <mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.12, 0]} material={groundMat}>
-      <planeGeometry args={[100, 100]}/>
-    </mesh>
-    <mesh position={[0, -0.02, 0]} receiveShadow>
-      <boxGeometry args={[22, 0.24, 17]}/>
-      <meshStandardMaterial color="#101a29" roughness={0.28} metalness={0.52}/>
-    </mesh>
-    <mesh position={[0, 0.12, 0]} receiveShadow>
-      <boxGeometry args={[15.8, 0.18, 11.2]}/>
-      <meshStandardMaterial color="#222f40" roughness={0.3} metalness={0.38}/>
-    </mesh>
+    {/* Site, forecourt and entry path */}
+    <mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.18, 0]}><planeGeometry args={[100, 100]}/><meshStandardMaterial color="#07111d" roughness={0.72}/></mesh>
+    <mesh position={[0, -0.02, 0]} receiveShadow><boxGeometry args={[24, 0.28, 19]}/><meshStandardMaterial color="#0d1928" roughness={0.34} metalness={0.48}/></mesh>
+    <mesh position={[0, 0.12, 0]} receiveShadow><boxGeometry args={[16.4, 0.18, 11.7]}/><primitive object={floor}/></mesh>
+    {Array.from({ length: 8 }, (_, i) => <mesh key={i} position={[0, 0.02, 6.5 + i * 0.75]}><boxGeometry args={[4.2, 0.08, 0.42]}/><meshStandardMaterial color={i % 2 ? '#1b3045' : '#243a4e'} metalness={0.4}/></mesh>)}
 
-    {/* Lower floor — open plan volume */}
-    <mesh position={[0, 1.65, 0]} material={wallMat}>
-      <boxGeometry args={[15.2, 0.22, 10.5]}/>
-    </mesh>
-    <mesh position={[0, 0.38, -5.05]} material={concreteMat}>
-      <boxGeometry args={[15.4, 0.75, 0.38]}/>
-    </mesh>
-    <mesh position={[-7.45, 1.8, 0]} material={concreteMat}>
-      <boxGeometry args={[0.38, 3.3, 10.3]}/>
-    </mesh>
-    <mesh position={[7.45, 1.8, 0]} material={concreteMat}>
-      <boxGeometry args={[0.38, 3.3, 10.3]}/>
-    </mesh>
-    <GlassPanel position={[0, 1.85, 5.05]} size={[14.8, 3.25, 0.09]}/>
-    <GlassPanel position={[-7.25, 1.85, 0]} size={[0.08, 3.2, 9.9]}/>
-    <GlassPanel position={[7.25, 1.85, 0]} size={[0.08, 3.2, 9.9]}/>
-    <NeonLine position={[0, 3.48, 0]} length={15.2}/>
-    <NeonLine position={[0, 0.5, 5.13]} length={14.7}/>
-    <NeonLine position={[-7.32, 1.85, 0]} rotation={[0, Math.PI / 2, 0]} length={9.8}/>
-    <NeonLine position={[7.32, 1.85, 0]} rotation={[0, Math.PI / 2, 0]} length={9.8}/>
+    {/* Lower level: continuous open-plan floor and perimeter structure */}
+    <mesh position={[0, 0.28, 0]} receiveShadow material={floor}><boxGeometry args={[15.8, 0.16, 11.3]}/></mesh>
+    <mesh position={[0, 0.5, -5.42]} material={concrete}><boxGeometry args={[15.8, 0.82, 0.36]}/></mesh>
+    <mesh position={[-7.7, 1.95, 0]} material={concrete}><boxGeometry args={[0.34, 3.05, 11.1]}/></mesh>
+    <mesh position={[7.7, 1.95, 0]} material={concrete}><boxGeometry args={[0.34, 3.05, 11.1]}/></mesh>
+    <Glass position={[0, 1.95, 5.43]} size={[15.2, 2.95, 0.08]}/>
+    <Glass position={[-7.53, 1.95, 0]} size={[0.07, 2.9, 10.8]}/>
+    <Glass position={[7.53, 1.95, 0]} size={[0.07, 2.9, 10.8]}/>
 
-    {/* Upper storey, deliberately set back to create a double-height void */}
-    <mesh position={[0.4, 5.25, -0.8]} material={wallMat}>
-      <boxGeometry args={[11.6, 0.2, 7.8]}/>
-    </mesh>
-    <mesh position={[0.4, 7.2, -0.8]} material={concreteMat}>
-      <boxGeometry args={[11.9, 0.22, 8.05]}/>
-    </mesh>
-    <mesh position={[-5.35, 6.2, -0.8]} material={concreteMat}>
-      <boxGeometry args={[0.22, 2, 7.9]}/>
-    </mesh>
-    <mesh position={[6.15, 6.2, -0.8]} material={concreteMat}>
-      <boxGeometry args={[0.22, 2, 7.9]}/>
-    </mesh>
-    <GlassPanel position={[0.4, 6.2, 3.08]} size={[11.35, 1.9, 0.07]}/>
-    <NeonLine position={[0.4, 7.32, 3.13]} length={11.5}/>
-    <NeonLine position={[0.4, 5.25, 3.13]} length={11.5}/>
-
-    {/* Structural columns and roof fins */}
-    {[-6.9, -3.5, 0, 3.5, 6.9].map((x) => <group key={x}>
-      <mesh position={[x, 1.8, -4.8]} material={concreteMat}><boxGeometry args={[0.18, 3.45, 0.18]}/></mesh>
-      <mesh position={[x, 3.65, -4.8]}><boxGeometry args={[0.26, 0.06, 0.26]}/><meshStandardMaterial color="#9db7ca" metalness={0.8} roughness={0.2}/></mesh>
+    {/* Mullions, structural columns, deep roof canopy */}
+    {Array.from({ length: 9 }, (_, i) => <Frame key={i} position={[-7.25 + i * 1.81, 1.95, 5.48]} size={[0.055, 2.95, 0.11]}/>)}
+    {[-6.9, -3.45, 0, 3.45, 6.9].map(x => <group key={x}>
+      <Frame position={[x, 1.95, -5.1]} size={[0.2, 3.1, 0.2]}/>
+      <Frame position={[x, 3.52, -5.1]} size={[0.28, 0.07, 0.28]} color="#9db4c5"/>
     </group>)}
-    {Array.from({ length: 9 }, (_, i) => <mesh key={i} position={[-6.8 + i * 1.7, 7.48, -0.8]} material={wallMat}><boxGeometry args={[0.12, 0.3, 8.3]}/></mesh>)}
+    <mesh position={[0, 3.55, 0]} material={dark}><boxGeometry args={[16.1, 0.18, 11.65]}/></mesh>
+    <Neon position={[0, 3.45, 0]} size={[15.8, 0.025, 0.035]}/>
+    <Neon position={[0, 0.72, 5.5]} size={[14.9, 0.025, 0.035]}/>
+    <Neon position={[-7.58, 1.95, 0]} rotation={[0, Math.PI / 2, 0]} size={[10.6, 0.025, 0.035]}/>
+    <Neon position={[7.58, 1.95, 0]} rotation={[0, Math.PI / 2, 0]} size={[10.6, 0.025, 0.035]}/>
 
-    {/* Floating stair sculpture */}
-    <group position={[-4.9, 0.2, 0.2]}>
-      {Array.from({ length: 12 }, (_, i) => <mesh key={i} position={[i * 0.34, i * 0.27, 0]} castShadow>
-        <boxGeometry args={[0.62, 0.12, 1.55]}/>
-        <meshStandardMaterial color="#8b9aab" metalness={0.72} roughness={0.24}/>
-      </mesh>)}
-      <NeonLine position={[1.8, 1.55, 0.78]} rotation={[0, 0, -0.67]} length={4.2}/>
+    {/* Upper level: mezzanine volume, balcony glazing and roof fins */}
+    <mesh position={[0.5, 5.05, -0.85]} material={floor}><boxGeometry args={[11.6, 0.2, 8.1]}/></mesh>
+    <mesh position={[0.5, 7.18, -0.85]} material={dark}><boxGeometry args={[12.15, 0.24, 8.5]}/></mesh>
+    <mesh position={[-5.25, 6.05, -0.85]} material={concrete}><boxGeometry args={[0.22, 2.05, 8.2]}/></mesh>
+    <mesh position={[6.25, 6.05, -0.85]} material={concrete}><boxGeometry args={[0.22, 2.05, 8.2]}/></mesh>
+    <Glass position={[0.5, 6.05, 3.2]} size={[11.45, 1.95, 0.075]}/>
+    {Array.from({ length: 8 }, (_, i) => <Frame key={i} position={[-4.65 + i * 1.47, 6.05, 3.22]} size={[0.045, 1.92, 0.09]}/>)}
+    <Neon position={[0.5, 7.28, 3.25]} size={[11.5, 0.025, 0.035]}/>
+    <Neon position={[0.5, 5.02, 3.25]} size={[11.5, 0.025, 0.035]}/>
+    {Array.from({ length: 11 }, (_, i) => <Frame key={i} position={[-5.1 + i * 1.02, 7.43, -0.85]} size={[0.12, 0.32, 8.55]} color="#26394d"/>)}
+
+    {/* Floating stair with glass balustrade */}
+    <group position={[-5.8, 0.36, -0.1]}>
+      {Array.from({ length: 13 }, (_, i) => <group key={i}>
+        <mesh position={[i * 0.32, i * 0.285, 0]} castShadow receiveShadow><boxGeometry args={[0.68, 0.14, 1.65]}/><meshStandardMaterial color="#8396a8" metalness={0.68} roughness={0.23}/></mesh>
+        <Neon position={[i * 0.32, i * 0.285 - 0.075, 0.83]} size={[0.58, 0.018, 0.025]}/>
+      </group>)}
+      <Glass position={[1.9, 1.95, 0.76]} size={[4.4, 0.95, 0.045]}/>
+      <Frame position={[1.9, 2.43, 0.76]} size={[4.45, 0.045, 0.07]} color="#a4bacb"/>
     </group>
 
-    {/* Interior furniture silhouettes */}
-    <group position={[1.9, 0.72, 1.2]}>
-      <mesh castShadow><boxGeometry args={[3.2, 0.68, 1.1]}/><meshStandardMaterial color="#26384b" roughness={0.8}/></mesh>
-      <mesh position={[0, 0.43, -0.35]}><boxGeometry args={[3.2, 0.72, 0.24]}/><meshStandardMaterial color="#34495c" roughness={0.8}/></mesh>
-    </group>
-    <mesh position={[1.8, 0.42, -0.5]}><cylinderGeometry args={[0.85, 0.85, 0.12, 48]}/><meshStandardMaterial color="#a1a9b4" metalness={0.6} roughness={0.25}/></mesh>
-    <group position={[3.5, 0.15, -3.2]}>
-      <mesh position={[0, 0.85, 0]}><boxGeometry args={[3.4, 0.12, 1.25]}/><meshStandardMaterial color="#192b40" metalness={0.55} roughness={0.3}/></mesh>
-      <mesh position={[0, 1.45, -0.48]}><boxGeometry args={[1.25, 0.78, 0.08]}/><meshStandardMaterial color="#050a13" emissive="#0b3157" emissiveIntensity={0.7}/></mesh>
-      <NeonLine position={[0, 1.05, 0.64]} length={3.2}/>
-    </group>
+    {/* Architectural portals and bronze details */}
+    <Frame position={[-7.53, 1.95, 4.3]} size={[0.12, 3.0, 1.6]} color="#98724f"/>
+    <Frame position={[7.53, 1.95, -4.15]} size={[0.12, 3.0, 1.7]} color="#98724f"/>
+    <Frame position={[0, 3.64, -5.15]} size={[15.6, 0.1, 0.3]} color="#8e765d"/>
 
-    {/* Exterior reflecting pool */}
-    <mesh position={[0, 0.1, 8.8]} rotation={[-Math.PI / 2, 0, 0]}>
-      <planeGeometry args={[18, 4.2]}/>
-      <meshPhysicalMaterial color="#071a2d" metalness={0.72} roughness={0.12} clearcoat={1} clearcoatRoughness={0.08}/>
-    </mesh>
-    {[-8, -5, 5, 8].map((x) => <group key={x} position={[x, 0, 6.5]}>
-      <mesh position={[0, 0.45, 0]}><cylinderGeometry args={[0.08, 0.12, 0.9, 8]}/><meshStandardMaterial color="#24394a" roughness={0.8}/></mesh>
-      <mesh position={[0, 0.95, 0]}><sphereGeometry args={[0.28, 12, 8]}/><meshStandardMaterial color="#1b4b48" roughness={0.9}/></mesh>
-      <pointLight position={[0, 0.35, 0]} color="#087dff" intensity={1.2} distance={3}/>
+    {/* Exterior terrace, reflecting pool and planted garden */}
+    <mesh position={[0, 0.04, 7.25]} receiveShadow><boxGeometry args={[19, 0.16, 4.2]}/><meshStandardMaterial color="#243649" roughness={0.32} metalness={0.35}/></mesh>
+    <Pool/>
+    {[-9.2, -6.8, 6.8, 9.2].map((x, i) => <Tree key={x} position={[x, 0, 4.4 + (i % 2) * 1.4]} scale={i % 2 ? 0.85 : 1.1}/>)}
+    {[-7, -4, 4, 7].map(x => <group key={x} position={[x, 0, 11.9]}>
+      <mesh position={[0, 0.22, 0]}><boxGeometry args={[1.7, 0.45, 0.8]}/><meshStandardMaterial color="#172b3b" roughness={0.9}/></mesh>
+      <pointLight position={[0, 0.45, 0]} color="#168fff" intensity={1.2} distance={4}/>
     </group>)}
+    <pointLight position={[0, 1.4, 9.1]} color="#168fff" intensity={3.5} distance={14}/>
+    <Interior/>
   </group>
 }
