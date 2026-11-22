@@ -464,3 +464,30 @@ button,a{font:inherit}
 .portfolio-slides button:active{transform:scale(.98)}
 .slides-stage{scroll-behavior:smooth;-webkit-overflow-scrolling:touch}
 @media(hover:none){.glow-card:hover{transform:none}.glow-card:before{opacity:.35}.resort-chapter-rail button small{max-width:100px;opacity:1}}
+
+
+/* Web3Forms contact panel */
+.finale-content{width:min(100%,980px);max-height:100%;overflow-y:auto;padding:6px 12px 24px 0;scrollbar-width:thin;scrollbar-color:#69d8e966 transparent}
+.contact-form{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:10px 14px;width:min(100%,760px);margin:22px 0 17px;padding:20px;border:1px solid #70dce94a;border-radius:13px;background:linear-gradient(145deg,#0b2430ed,#081923ef);box-shadow:0 18px 55px #0005;backdrop-filter:blur(18px)}
+.contact-form-heading{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;gap:12px;padding-bottom:10px;border-bottom:1px solid #6bd9e525}
+.contact-form-heading>span{display:flex;align-items:center;gap:8px;color:#83e5f0;font:10px 'DM Mono',monospace;letter-spacing:.1em}
+.contact-form-heading small{color:#9db9c1;font-size:10px}
+.contact-field{display:flex;flex-direction:column;gap:7px;min-width:0}.contact-field label{display:block;color:#b8d3d9;font:9px 'DM Mono',monospace;letter-spacing:.1em}.contact-message-field{grid-column:1/-1}
+.contact-form input,.contact-form textarea{width:100%;min-width:0;border:1px solid #78d7e538;border-radius:7px;background:#061720c9;color:#effcff;padding:12px 13px;font:14px Manrope, sans-serif;outline:none;transition:border-color .2s,box-shadow .2s,background .2s}
+.contact-form input::placeholder,.contact-form textarea::placeholder{color:#7999a3}
+.contact-form input:focus,.contact-form textarea:focus{border-color:#79e3ef;box-shadow:0 0 0 3px #62d9e91c;background:#071e29}
+.contact-form textarea{resize:vertical;min-height:104px;line-height:1.6}
+
+.contact-submit{grid-column:1/-1;justify-self:start;min-width:190px;display:inline-flex;align-items:center;justify-content:center;gap:12px}
+.contact-submit:disabled{opacity:.65;cursor:wait}
+.contact-form-status{grid-column:1/-1;min-height:18px;margin:0;color:#aee7dc;font-size:12px;line-height:1.5}
+.finale-links{display:flex;flex-wrap:wrap;gap:14px 22px}
+@media(max-width:760px){
+ .finale-content{padding-right:0;max-height:100%}
+ .contact-form{width:100%;grid-template-columns:1fr;padding:16px;margin:16px 0 12px;gap:8px}
+ .contact-form-heading{align-items:flex-start;flex-direction:column;gap:5px}
+ .contact-message-field{grid-column:1}
+ .contact-form input,.contact-form textarea{font-size:14px;padding:12px}
+ .contact-submit{width:100%}
+ .finale-links{gap:11px 15px}
+}

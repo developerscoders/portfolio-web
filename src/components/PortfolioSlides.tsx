@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react'
+import { useCallback, useEffect, useRef, useState, type FormEvent, type PointerEvent as ReactPointerEvent } from 'react'
 import { ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, BriefcaseBusiness, Code2, Cpu, ExternalLink, Github, GraduationCap, Linkedin, Mail, MapPin, Pause, Play, Sparkles, Sun, Trophy, Volume2, VolumeX, Waves, Wind, Compass, Layers3, GitBranch, FileCode2, Activity, ChevronRight, Zap, Globe2 } from 'lucide-react'
 import './slides.css'
 
@@ -33,6 +33,43 @@ function pointerGlow(event: ReactPointerEvent<HTMLElement>) {
 function Kicker({ children, number }: { children: string; number: string }) {
   return <div className="resort-kicker"><span>{number}</span><i />{children}</div>
 }
+
+function ContactForm() {
+  const [result, setResult] = useState('')
+  const [sending, setSending] = useState(false)
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    if (sending) return
+    setSending(true)
+    setResult('Sending your message…')
+    const form = event.currentTarget
+    const formData = new FormData(form)
+    formData.append('access_key', '900595b9-0755-4c10-a8e0-605da9435468')
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: formData })
+      const data = await response.json()
+      if (response.ok && data.success) {
+        setResult('Message sent successfully. Thank you — I’ll be in touch!')
+        form.reset()
+      } else {
+        setResult(data.message || 'We could not send your message. Please try again.')
+      }
+    } catch {
+      setResult('Network error. Please check your connection and try again.')
+    } finally {
+      setSending(false)
+    }
+  }
+  return <form className="contact-form glow-card" onSubmit={onSubmit} onPointerMove={pointerGlow}>
+    <div className="contact-form-heading"><span> <Mail size={15}/> SEND A MESSAGE</span><small>Usually replies within 1–2 business days</small></div>
+    <div className="contact-field"><label htmlFor="contact-name">YOUR NAME</label><input id="contact-name" name="name" type="text" placeholder="How should I address you?" autoComplete="name" required/></div>
+    <div className="contact-field"><label htmlFor="contact-email">EMAIL ADDRESS</label><input id="contact-email" name="email" type="email" placeholder="you@example.com" autoComplete="email" required/></div>
+    <div className="contact-field contact-message-field"><label htmlFor="contact-message">WHAT'S ON YOUR MIND?</label><textarea id="contact-message" name="message" rows={4} placeholder="Tell me a little about your idea, project or opportunity…" required/></div>
+    <button className="resort-primary contact-submit" type="submit" disabled={sending}>{sending ? 'SENDING…' : 'SEND MESSAGE'} <ArrowUpRight size={16}/></button>
+    <p className="contact-form-status" role="status" aria-live="polite">{result}</p>
+  </form>
+}
+
 function ChapterContent({ index, goTo }: { index: number; goTo: (n: number) => void }) {
   if (index === 0) return <div className="chapter-content arrival-content">
     <Kicker number="DEVELOPER PORTFOLIO · 2026">WELCOME · PALLAV BURNWAL</Kicker>
@@ -91,8 +128,8 @@ function ChapterContent({ index, goTo }: { index: number; goTo: (n: number) => v
   </div>
   return <div className="chapter-content finale-content">
     <Kicker number="THE TERRACE">THE NEXT CHAPTER</Kicker><h2>Let’s make<br/>something <em>matter.</em></h2>
-    <p className="chapter-lead">I’m open to full-time developer opportunities and collaborations across full-stack engineering, AI and product development.</p>
-    <a className="resort-primary contact-cta" href="mailto:pallavburnwal@gmail.com">START A CONVERSATION <ArrowUpRight size={16}/></a>
+    <p className="chapter-lead">I’m open to full-time developer opportunities and collaborations across full-stack engineering, AI and product development. Send me a message and let’s talk.</p>
+    <ContactForm />
     <div className="finale-links"><a href="mailto:pallavburnwal@gmail.com"><Mail size={15}/> pallavburnwal@gmail.com</a><a href="https://github.com/developerscoders" target="_blank" rel="noreferrer"><Github size={15}/> GITHUB <ExternalLink size={11}/></a><a href="https://linkedin.com/in/pallavburnwal" target="_blank" rel="noreferrer"><Linkedin size={15}/> LINKEDIN <ExternalLink size={11}/></a></div>
     <div className="finale-signoff">THANK YOU FOR STAYING A WHILE <span>✳</span></div>
   </div>
