@@ -3,7 +3,7 @@ import * as THREE from 'three'
 
 function Box({ position, size, color, roughness = 0.55, metalness = 0, radius = 0 }: {
   position: [number, number, number]; size: [number, number, number]; color: string
-  roughness?: number; metalness?: number; radius?: number
+  roughness?: number; metalness?: number
 }) {
   return <mesh position={position} castShadow receiveShadow>
     <boxGeometry args={size}/>
