@@ -1,5 +1,5 @@
 import { Suspense, lazy, useCallback, useEffect, useRef, useState } from 'react'
-import { ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, BriefcaseBusiness, Code2, Cpu, ExternalLink, Github, GraduationCap, Linkedin, Mail, MapPin, Pause, Play, Trophy, Volume2, VolumeX } from 'lucide-react'
+import { ArrowLeft, ArrowRight, ArrowUpRight, BriefcaseBusiness, Code2, Cpu, ExternalLink, Github, GraduationCap, Linkedin, Mail, MapPin, Pause, Play, Trophy, Volume2, VolumeX } from 'lucide-react'
 import './slides.css'
 
 const AvatarCompanion = lazy(() => import('./avatar/AvatarCompanion'))
@@ -157,7 +157,7 @@ export default function PortfolioSlides() {
     <div className="slides-chapter-label"><span>{activeSlide.number}</span><i/>{activeSlide.label}</div>
     <section className="slides-stage" aria-live="polite"><div key={activeSlide.id} className="slides-enter"><SlideContent index={active} onNavigate={goTo} onSpeak={speak}/></div></section>
     <Suspense fallback={<div className="avatar-loading">LOADING AVATAR…</div>}>
-      <AvatarCompanion mode={active === 0 ? 'hero' : 'resident'} onSpeak={speak}/>
+      <AvatarCompanion mode={active === 0 ? 'hero' : 'resident'}/>
     </Suspense>
     <aside className="slides-side-controls"><span>CHOOSE A CHAPTER</span>{slides.map((s, i) => <button key={s.id} className={i === active ? 'active' : ''} onClick={() => goTo(i)} aria-label={'Go to '+s.title}><b>{s.number}</b><i/></button>)}</aside>
     <div className="slides-bottom"><span><i/> ENVIRONMENT {videoFailed ? 'ASSET MISSING' : videoReady ? 'ONLINE' : 'LOADING'} · BUILD 005</span><div className="slides-bottom-center"><button onClick={togglePlay}>{playing ? <Pause size={13}/> : <Play size={13}/>} {playing ? 'PAUSE FILM' : 'PLAY FILM'}</button><span>{activeSlide.number} / 06</span></div><span>© 2026 PALLAV BURNWAL</span></div>
