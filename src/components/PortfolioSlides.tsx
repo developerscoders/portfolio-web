@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react'
-import { ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, BriefcaseBusiness, Code2, Cpu, ExternalLink, Github, GraduationCap, Linkedin, Mail, MapPin, Pause, Play, Sparkles, Sun, Trophy, Volume2, VolumeX, Waves, Wind, Compass, Layers3 } from 'lucide-react'
+import { ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, BriefcaseBusiness, Code2, Cpu, ExternalLink, Github, GraduationCap, Linkedin, Mail, MapPin, Pause, Play, Sparkles, Sun, Trophy, Volume2, VolumeX, Waves, Wind, Compass, Layers3, Terminal, GitBranch, Database, Server, Braces, FileCode2, Activity, ChevronRight, Zap, Globe2 } from 'lucide-react'
 import './slides.css'
 
 type Chapter = { id: string; number: string; name: string; room: string; title: string; subtitle: string; file: string; tag: string }
@@ -35,11 +35,35 @@ function Kicker({ children, number }: { children: string; number: string }) {
 }
 function ChapterContent({ index, goTo }: { index: number; goTo: (n: number) => void }) {
   if (index === 0) return <div className="chapter-content arrival-content">
-    <Kicker number="A DIGITAL GETAWAY">WELCOME · PALLAV BURNWAL</Kicker>
-    <h1>Engineering<br/>with a sense of<br/><em>possibility.</em></h1>
-    <p className="chapter-lead">A full-stack developer exploring the intersection of thoughtful interfaces, reliable systems and applied intelligence.</p>
-    <div className="hero-cta-row"><button className="resort-primary" onClick={() => goTo(4)}>EXPLORE SELECTED WORK <ArrowUpRight size={16}/></button><button className="resort-quiet" onClick={() => goTo(1)}>GET TO KNOW ME <ArrowDown size={15}/></button></div>
-    <div className="arrival-note"><span><MapPin size={13}/> ASANSOL, INDIA</span><span>OPEN TO FULL-TIME OPPORTUNITIES</span></div>
+    <Kicker number="DEVELOPER PORTFOLIO · 2026">WELCOME · PALLAV BURNWAL</Kicker>
+    <div className="developer-hero-grid">
+      <div className="developer-hero-copy">
+        <div className="developer-availability"><span className="live-pulse"/> AVAILABLE FOR ENGINEERING OPPORTUNITIES <span className="developer-location"><MapPin size={12}/> INDIA</span></div>
+        <h1>I build<br/>things for the<br/><em>real world.</em></h1>
+        <p className="chapter-lead">Full-stack developer & AI engineer crafting thoughtful interfaces, scalable backends and intelligent digital experiences.</p>
+        <div className="hero-cta-row"><button className="resort-primary" onClick={() => goTo(4)}>VIEW MY WORK <ArrowUpRight size={16}/></button><button className="resort-quiet" onClick={() => goTo(1)}>MORE ABOUT ME <ArrowDown size={15}/></button></div>
+        <div className="developer-stack-line"><span>REACT</span><i/> <span>TYPESCRIPT</span><i/> <span>PYTHON</span><i/> <span>AI / ML</span></div>
+      </div>
+      <div className="developer-code-window glow-card" onPointerMove={pointerGlow}>
+        <div className="code-window-top"><div className="code-window-dots"><i/><i/><i/></div><span><FileCode2 size={12}/> pallav.ts</span><span className="code-window-live"><Activity size={11}/> LIVE</span></div>
+        <div className="code-window-body">
+          <div className="code-line"><span>01</span><code><b className="syntax-purple">const</b> <b className="syntax-blue">developer</b> = {'{'}</code></div>
+          <div className="code-line"><span>02</span><code>&nbsp; name: <b className="syntax-green">'Pallav Burnwal'</b>,</code></div>
+          <div className="code-line"><span>03</span><code>&nbsp; role: <b className="syntax-green">'Full-Stack & AI'</b>,</code></div>
+          <div className="code-line"><span>04</span><code>&nbsp; focus: [<b className="syntax-green">'Product'</b>,</code></div>
+          <div className="code-line"><span>05</span><code>&nbsp;&nbsp; <b className="syntax-green">'Systems'</b>, <b className="syntax-green">'Intelligence'</b>],</code></div>
+          <div className="code-line"><span>06</span><code>&nbsp; build: <b className="syntax-yellow">()</b> =&gt; <b className="syntax-blue">impact</b></code></div>
+          <div className="code-line"><span>07</span><code>{'}'}<span className="code-cursor">▋</span></code></div>
+        </div>
+        <div className="code-window-bottom"><span><GitBranch size={11}/> main*</span><span><Zap size={11}/> always shipping</span><span>UTF-8</span></div>
+      </div>
+    </div>
+    <div className="developer-metrics">
+      <div><strong>30<span>%</span></strong><small>RESUME EXTRACTION IMPROVEMENT</small></div>
+      <div><strong>1k<span>+</span></strong><small>DAILY API REQUESTS</small></div>
+      <div><strong>04</strong><small>ENGINEERING DOMAINS</small></div>
+      <div className="developer-location-card"><Globe2 size={15}/><span>BUILDING FROM INDIA<br/><b>THINKING GLOBALLY</b></span></div>
+    </div>
   </div>
   if (index === 1) return <div className="chapter-content story-content">
     <Kicker number="THE LOUNGE">A LITTLE ABOUT ME</Kicker><h2>Curious by nature.<br/><em>Engineer by craft.</em></h2>
@@ -137,13 +161,13 @@ export default function PortfolioSlides() {
   return <main className="portfolio-slides resort-portfolio" onTouchStart={e => { touchStart.current = e.target instanceof Element && e.target.closest('.project-grid') ? null : (e.touches[0]?.clientY ?? null) }} onTouchEnd={e => { if (touchStart.current === null) return; const delta = touchStart.current - (e.changedTouches[0]?.clientY ?? touchStart.current); if (Math.abs(delta) > 55) goTo(active + (delta > 0 ? 1 : -1)); touchStart.current = null }}>
     <div className="slides-video-layer" aria-hidden="true"><video ref={videoRef} className={videoReady ? 'slides-video ready' : 'slides-video'} muted playsInline loop preload="none" onCanPlay={() => setVideoReady(true)} onPlaying={() => setVideoReady(true)} onError={() => { setVideoFailed(true); setVideoReady(false) }}/><div className="slides-video-fallback"/><div className="slides-video-shade"/></div>
     <div className="resort-grain" aria-hidden="true"/><div className="resort-light-orb" aria-hidden="true"/><div className="resort-vignette" aria-hidden="true"/>
-    <header className="slides-header resort-header"><button className="slides-brand resort-brand" onClick={() => goTo(0)}><span>P.</span><b>PALLAV <i>BURNWAL</i></b></button><div className="slides-header-center"><i/> A PORTFOLIO IN SIX CHAPTERS <b>/</b> EST. 2026</div><div className="slides-header-actions"><button aria-label={muted ? 'Unmute video' : 'Mute video'} onClick={() => setMuted(v => !v)}>{muted ? <VolumeX size={17}/> : <Volume2 size={17}/>}</button><a href="https://github.com/developerscoders" aria-label="GitHub" target="_blank" rel="noreferrer"><Github size={17}/></a><a href="https://linkedin.com/in/pallavburnwal" aria-label="LinkedIn" target="_blank" rel="noreferrer"><Linkedin size={17}/></a><button className="slides-menu-toggle" onClick={() => setMenuOpen(v => !v)}>EXPLORE <span>☰</span></button></div></header>
+    <header className="slides-header resort-header"><button className="slides-brand resort-brand" onClick={() => goTo(0)}><span>P.</span><b>PALLAV <i>BURNWAL</i></b></button><div className="slides-header-center"><i/> SYSTEM ONLINE · FULL-STACK / AI <b>/</b> EST. 2026</div><div className="slides-header-actions"><button aria-label={muted ? 'Unmute video' : 'Mute video'} onClick={() => setMuted(v => !v)}>{muted ? <VolumeX size={17}/> : <Volume2 size={17}/>}</button><a href="https://github.com/developerscoders" aria-label="GitHub" target="_blank" rel="noreferrer"><Github size={17}/></a><a href="https://linkedin.com/in/pallavburnwal" aria-label="LinkedIn" target="_blank" rel="noreferrer"><Linkedin size={17}/></a><button className="slides-menu-toggle" onClick={() => setMenuOpen(v => !v)}>EXPLORE <span>☰</span></button></div></header>
     {menuOpen && <nav className="slides-menu resort-menu">{chapters.map((item, i) => <button key={item.id} className={i === active ? 'active' : ''} onClick={() => goTo(i)}><span>{item.number}</span>{item.name}<ArrowUpRight size={13}/></button>)}</nav>}
     <div className="resort-side-label"><span>SCROLL TO EXPLORE</span><i/></div>
-    <section ref={stageRef} className="slides-stage resort-stage" aria-live="polite"><div key={chapter.id} className="slides-enter resort-enter"><div className="resort-room-label"><span>{chapter.room}</span><span>{chapter.number} / 06</span></div><ChapterContent index={active} goTo={goTo}/></div></section>
-    <aside className="resort-chapter-rail"><span className="rail-title">THE JOURNEY</span>{chapters.map((item, i) => <button key={item.id} className={i === active ? 'active' : ''} onClick={() => goTo(i)} aria-label={`Open ${item.name}`}><span>{item.number}</span><i/><small>{item.name}</small></button>)}</aside>
-    <footer className="slides-bottom resort-footer"><span><i/> {videoFailed ? 'CINEMATIC ASSET UNAVAILABLE' : videoReady ? 'SCENE IN MOTION' : 'PREPARING THE SCENE'} <b>·</b> {chapter.tag}</span><div className="slides-bottom-center"><button onClick={togglePlay}>{playing ? <Pause size={13}/> : <Play size={13}/>} {playing ? 'PAUSE FILM' : 'PLAY FILM'}</button><span>{chapter.number} / 06</span></div><span>© 2026 PALLAV BURNWAL</span></footer>
+    <section ref={stageRef} className="slides-stage resort-stage" aria-live="polite"><div key={chapter.id} className="slides-enter resort-enter"><div className="resort-room-label"><span>{chapter.room} · 0x{chapter.number}</span><span>{chapter.number} / 06</span></div><ChapterContent index={active} goTo={goTo}/></div></section>
+    <aside className="resort-chapter-rail"><span className="rail-title">NAVIGATE.EXE</span>{chapters.map((item, i) => <button key={item.id} className={i === active ? 'active' : ''} onClick={() => goTo(i)} aria-label={`Open ${item.name}`}><span>{item.number}</span><i/><small>{item.name}</small></button>)}</aside>
+    <footer className="slides-bottom resort-footer"><span><i/> {videoFailed ? 'FALLBACK ENVIRONMENT' : videoReady ? 'RENDERING SCENE' : 'LOADING ENVIRONMENT'} <b>·</b> {chapter.tag}</span><div className="slides-bottom-center"><button onClick={togglePlay}>{playing ? <Pause size={13}/> : <Play size={13}/>} {playing ? 'PAUSE SCENE' : 'PLAY SCENE'}</button><span>{chapter.number} / 06</span></div><span>© 2026 PALLAV.DEV · ALL SYSTEMS NOMINAL</span></footer>
     <div className="slides-arrows resort-arrows"><button onClick={() => goTo(active - 1)} disabled={active === 0} aria-label="Previous chapter"><ArrowLeft/></button><button onClick={() => goTo(active + 1)} disabled={active === chapters.length - 1} aria-label="Next chapter"><ArrowRight/></button></div>
-    <div className="resort-corner-mark"><Sun size={13}/> DESIGNED TO EXPLORE</div>
+    <div className="resort-corner-mark"><Sun size={13}/> BUILT WITH CURIOSITY</div>
   </main>
 }
