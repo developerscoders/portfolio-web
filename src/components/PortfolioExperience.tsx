@@ -67,7 +67,7 @@ function AvatarWelcome() {
   return <aside className="pf-avatar-welcome" aria-label="Pallav's speaking avatar">
     <div className="pf-avatar-card">
       <div className="pf-avatar-image-wrap" onPointerMove={trackEyes} onPointerLeave={() => setPupil({ x: 0, y: 0 })}>
-        <img src="/pallav-avatar.jpg" alt="Pallav wearing a black sweatshirt with a bronze N emblem" className="pf-avatar-image" />
+        <img src="/pallav_avatar.jpg" alt="Pallav wearing a black sweatshirt with a bronze N emblem" className="pf-avatar-image" />
         <span className="pf-avatar-eye pf-avatar-eye-left"><i style={{ transform: `translate(${pupil.x * 2.4}px, ${pupil.y * 1.8}px)` }} /></span>
         <span className="pf-avatar-eye pf-avatar-eye-right"><i style={{ transform: `translate(${pupil.x * 2.4}px, ${pupil.y * 1.8}px)` }} /></span>
         <span className="pf-avatar-live"><i /> LIVE AVATAR</span>
