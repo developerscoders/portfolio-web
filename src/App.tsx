@@ -28,7 +28,7 @@ export default function App() {
 
   return (
     <main className="experience">
-      {!cinematic && <div className="scene-wrap">
+      <div className={cinematic ? "scene-wrap scene-wrap-paused" : "scene-wrap"}>
         <Canvas
           frameloop={cinematic ? 'never' : 'always'}
           shadows={false}
@@ -48,7 +48,7 @@ export default function App() {
             <Avatar cameraMode={cameraMode} started={started} />
           </Suspense>
         </Canvas>
-      </div>}
+      </div>
 
       <header className="topbar">
         <a className="brand" href="#home" aria-label="Pallav home"><span className="brand-mark">P.</span><span className="brand-name">PALLAV<span className="brand-dot">.</span></span></a>
