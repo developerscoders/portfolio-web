@@ -56,7 +56,7 @@ function Eye({ x, motion, side }: { x: number; motion: MutableRefObject<Motion>;
   </group>
 }
 
-function ProceduralHead({ motion }: { motion: React.MutableRefObject<Motion> }) {
+function ProceduralHead({ motion }: { motion: MutableRefObject<Motion> }) {
   const head = useRef<THREE.Group>(null)
   const jaw = useRef<THREE.Group>(null)
   const mouth = useRef<THREE.Mesh>(null)
@@ -103,7 +103,7 @@ function ProceduralHead({ motion }: { motion: React.MutableRefObject<Motion> }) 
   </group>
 }
 
-function ProceduralBust({ motion }: { motion: React.MutableRefObject<Motion> }) {
+function ProceduralBust({ motion }: { motion: MutableRefObject<Motion> }) {
   const torso = useRef<THREE.Group>(null)
   const shirt = useMemo(() => new THREE.MeshStandardMaterial({ color: '#111820', roughness: 0.88 }), [])
   const bronze = useMemo(() => new THREE.MeshStandardMaterial({ color: '#bd8750', metalness: 0.58, roughness: 0.38 }), [])
@@ -133,7 +133,7 @@ function ProceduralBust({ motion }: { motion: React.MutableRefObject<Motion> }) 
   </group>
 }
 
-function AvatarScene({ motion }: { motion: React.MutableRefObject<Motion> }) {
+function AvatarScene({ motion }: { motion: MutableRefObject<Motion> }) {
   return <Canvas camera={{ position: [0, 0.05, 3.25], fov: 34 }} dpr={[1, 1.5]} gl={{ antialias: true, alpha: true, powerPreference: 'low-power' }}>
     <ambientLight intensity={1.45}/>
     <directionalLight position={[2, 3, 4]} intensity={2.0} color="#fff0df"/>
