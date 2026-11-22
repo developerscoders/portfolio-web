@@ -59,3 +59,17 @@ Place the generated MP4 clips in `public/videos/` using these exact names:
 - `06-terrace-finale.mp4`
 
 The player includes chapter navigation, progress, mute, pause, next/previous and a graceful missing-asset message. Video files are not included in the repository yet; they must be generated and added separately.
+
+## Phase 4 — Avatar and slide portfolio
+
+The main portfolio now uses six full-screen animated slides rather than a long scrolling page. Navigate with the right/left arrows, mouse wheel, touch swipe, keyboard arrows/PageUp/PageDown, or the chapter selector. Each slide selects its matching 720p cinematic background clip.
+
+The avatar runtime is lazy-loaded and uses browser-native SpeechSynthesis for free device-provided voice. It checks for `public/models/pallav-avatar.glb`; when present, the Three.js avatar runtime tracks the global pointer through eye bones and head bone and drives supported mouth morph targets from speech boundary events. The browser voice is device-dependent; a male-sounding English voice is selected when the OS exposes one, but the browser cannot guarantee a male voice on every device.
+
+### Required personal avatar assets
+
+- Add your approved portrait as `public/pallav-avatar.jpg` for the portrait fallback.
+- Add a genuinely rigged, photorealistic GLB as `public/models/pallav-avatar.glb` for full 3D eye/head tracking and mouth morphs.
+- The GLB rig naming and performance requirements are documented in `public/models/README.md`.
+
+A single portrait is not itself a rigged 3D model. The repository contains the loader, controls and animation hooks, but does not claim to contain a generated or rigged identity-matched model until that GLB is supplied. Native browser TTS provides free speech; its boundary events are approximate mouth cues, not phoneme-accurate visemes.
