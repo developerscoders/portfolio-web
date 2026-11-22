@@ -70,6 +70,7 @@ function AvatarWelcome() {
     }
   }, [])
 
+
   useEffect(() => {
     let frame = 0
     const trackCursor = (event: PointerEvent) => {
@@ -94,7 +95,7 @@ function AvatarWelcome() {
     <div className="pf-avatar-card">
       <div className="pf-avatar-image-wrap">
         <img
-          src="/pallav-avatar.jpg"
+          src="/pallav_avatar.jpg"
           alt="Pallav wearing a black sweatshirt with a bronze N emblem"
           className="pf-avatar-image"
           style={{ transform: `perspective(900px) rotateY(${look.x * 3.5}deg) rotateX(${-look.y * 2.5}deg) scale(1.07) translate(${look.x * 3}px, ${look.y * 2}px)` }}
