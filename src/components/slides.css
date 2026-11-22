@@ -472,12 +472,12 @@ button,a{font:inherit}
 .contact-form-heading{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;gap:12px;padding-bottom:10px;border-bottom:1px solid #6bd9e525}
 .contact-form-heading>span{display:flex;align-items:center;gap:8px;color:#83e5f0;font:10px 'DM Mono',monospace;letter-spacing:.1em}
 .contact-form-heading small{color:#9db9c1;font-size:10px}
-.contact-form label{display:block;align-self:end;color:#b8d3d9;font:9px 'DM Mono',monospace;letter-spacing:.1em}
-.contact-form input,.contact-form textarea{grid-column:span 1;width:100%;min-width:0;border:1px solid #78d7e538;border-radius:7px;background:#061720c9;color:#effcff;padding:12px 13px;font:14px Manrope, sans-serif;outline:none;transition:border-color .2s,box-shadow .2s,background .2s}
+.contact-field{display:flex;flex-direction:column;gap:7px;min-width:0}.contact-field label{display:block;color:#b8d3d9;font:9px 'DM Mono',monospace;letter-spacing:.1em}.contact-message-field{grid-column:1/-1}
+.contact-form input,.contact-form textarea{width:100%;min-width:0;border:1px solid #78d7e538;border-radius:7px;background:#061720c9;color:#effcff;padding:12px 13px;font:14px Manrope, sans-serif;outline:none;transition:border-color .2s,box-shadow .2s,background .2s}
 .contact-form input::placeholder,.contact-form textarea::placeholder{color:#7999a3}
 .contact-form input:focus,.contact-form textarea:focus{border-color:#79e3ef;box-shadow:0 0 0 3px #62d9e91c;background:#071e29}
-.contact-form textarea{grid-column:1/-1;resize:vertical;min-height:104px;line-height:1.6}
-.contact-form label[for="contact-message"]{grid-column:1/-1}
+.contact-form textarea{resize:vertical;min-height:104px;line-height:1.6}
+
 .contact-submit{grid-column:1/-1;justify-self:start;min-width:190px;display:inline-flex;align-items:center;justify-content:center;gap:12px}
 .contact-submit:disabled{opacity:.65;cursor:wait}
 .contact-form-status{grid-column:1/-1;min-height:18px;margin:0;color:#aee7dc;font-size:12px;line-height:1.5}
@@ -486,8 +486,7 @@ button,a{font:inherit}
  .finale-content{padding-right:0;max-height:100%}
  .contact-form{width:100%;grid-template-columns:1fr;padding:16px;margin:16px 0 12px;gap:8px}
  .contact-form-heading{align-items:flex-start;flex-direction:column;gap:5px}
- .contact-form label,.contact-form label[for="contact-message"]{grid-column:1}
- .contact-form input,.contact-form textarea{grid-column:1}
+ .contact-message-field{grid-column:1}
  .contact-form input,.contact-form textarea{font-size:14px;padding:12px}
  .contact-submit{width:100%}
  .finale-links{gap:11px 15px}
