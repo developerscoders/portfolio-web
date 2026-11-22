@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react'
-import { ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, BriefcaseBusiness, Code2, Cpu, ExternalLink, Github, GraduationCap, Linkedin, Mail, MapPin, Pause, Play, Sparkles, Sun, Trophy, Volume2, VolumeX, Waves, Wind, Compass, Layers3, Terminal, GitBranch, Database, Server, Braces, FileCode2, Activity, ChevronRight, Zap, Globe2 } from 'lucide-react'
+import { ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, BriefcaseBusiness, Code2, Cpu, ExternalLink, Github, GraduationCap, Linkedin, Mail, MapPin, Pause, Play, Sparkles, Sun, Trophy, Volume2, VolumeX, Waves, Wind, Compass, Layers3, GitBranch, FileCode2, Activity, ChevronRight, Zap, Globe2 } from 'lucide-react'
 import './slides.css'
 
 type Chapter = { id: string; number: string; name: string; room: string; title: string; subtitle: string; file: string; tag: string }
