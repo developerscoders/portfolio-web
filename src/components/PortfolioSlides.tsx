@@ -21,6 +21,7 @@ const projects = [
   { name: 'RecruitFlow AI', type: 'RECRUITER WORKFLOW SAAS', description: 'A recruiter-focused platform for candidate tracking and timely follow-ups, with organization-scoped workflows, AI-assisted drafting and email automation.', stack: ['React', 'TypeScript', 'Tailwind', 'MongoDB', 'n8n'] },
   { name: 'Calmly AI', type: 'WELLNESS PRODUCT', description: 'A calming digital experience focused on guided stress management, breathing and accessible voice-led support.', stack: ['React', 'TypeScript', 'Workers', 'Supabase'] },
   { name: 'Mediverse.AI', type: 'HEALTHCARE HACKATHON', description: 'A healthcare-focused AI project developed for HackWithUttarPradesh, where the team placed first in the medical track.', stack: ['AI', 'Python', 'Automation'] },
+  { name: 'TrustFlow AI', type: 'AI PRODUCT PROJECT', description: 'An AI product concept from my project portfolio. A detailed case study and verified feature breakdown will be added when the project documentation is published.', stack: ['AI', 'Product Engineering'] },
 ]
 
 function Kicker({ number, children }: { number: string; children: string }) {
@@ -120,7 +121,8 @@ export default function PortfolioSlides() {
     }
     let wheelTime = 0
     const onWheel = (event: WheelEvent) => {
-      const nested = (event.target as HTMLElement | null)?.closest('.slide-project-grid') as HTMLElement | null
+      const target = event.target as HTMLElement | null
+      const nested = target?.closest('.slide-project-grid, .slides-stage') as HTMLElement | null
       if (nested && ((event.deltaY < 0 && nested.scrollTop > 0) || (event.deltaY > 0 && nested.scrollTop + nested.clientHeight < nested.scrollHeight - 1))) return
       if (Math.abs(event.deltaY) < 24) return
       const now = Date.now()
@@ -152,7 +154,7 @@ export default function PortfolioSlides() {
     else { node.pause(); setPlaying(false) }
   }
 
-  return <main className="portfolio-slides" onTouchStart={e => { touchStart.current = e.touches[0]?.clientY ?? null }} onTouchEnd={e => { if (touchStart.current === null) return; const delta = touchStart.current - (e.changedTouches[0]?.clientY ?? touchStart.current); if (Math.abs(delta) > 55) goTo(active + (delta > 0 ? 1 : -1)); touchStart.current = null }}>
+  return <main className="portfolio-slides" onTouchStart={e => { touchStart.current = e.target instanceof Element && e.target.closest('.slide-project-grid') ? null : (e.touches[0]?.clientY ?? null) }} onTouchEnd={e => { if (touchStart.current === null) return; const delta = touchStart.current - (e.changedTouches[0]?.clientY ?? touchStart.current); if (Math.abs(delta) > 55) goTo(active + (delta > 0 ? 1 : -1)); touchStart.current = null }}>
     <div className="slides-video-layer" aria-hidden="true"><video ref={videoRef} className={videoReady ? 'slides-video ready' : 'slides-video'} muted={muted} playsInline loop preload="none" onCanPlay={() => setVideoReady(true)} onPlaying={() => setVideoReady(true)} onError={() => { setVideoFailed(true); setVideoReady(false) }}/><div className="slides-video-fallback"/><div className="slides-video-shade"/></div>
     <header className="slides-header"><button className="slides-brand" onClick={() => goTo(0)}><span>P.</span> PALLAV.</button><div className="slides-header-center"><i/> INTERACTIVE PORTFOLIO <b>/</b> 3D RESIDENCE</div><div className="slides-header-actions"><button aria-label={muted ? 'Unmute video' : 'Mute video'} onClick={() => setMuted(v => !v)}>{muted ? <VolumeX size={17}/> : <Volume2 size={17}/>}</button><a href="https://github.com/developerscoders" aria-label="GitHub" target="_blank" rel="noreferrer"><Github size={17}/></a><a href="https://linkedin.com/in/pallavburnwal" aria-label="LinkedIn" target="_blank" rel="noreferrer"><Linkedin size={17}/></a><button className="slides-menu-toggle" onClick={() => setMenuOpen(v => !v)}>CHAPTERS</button></div></header>
     {menuOpen && <nav className="slides-menu">{slides.map((s, i) => <button key={s.id} className={i === active ? 'active' : ''} onClick={() => goTo(i)}><span>{s.number}</span>{s.title}</button>)}</nav>}
