@@ -211,3 +211,163 @@ button,a{font:inherit}
 @media(max-width:760px){.developer-hero-grid{grid-template-columns:1fr;gap:20px}.developer-hero-copy h1{font-size:clamp(48px,11vw,70px);margin:17px 0 12px}.developer-availability{font-size:7px}.developer-code-window{max-width:none}.code-window-body{padding:11px 13px}.code-line{min-height:22px}.developer-stack-line{margin-top:19px}.developer-metrics{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:16px}.developer-metrics>div{min-height:63px;padding:9px 11px}.developer-metrics strong{font-size:22px}.developer-metrics small{font-size:5px}.arrival-content{padding-bottom:8px}.slides-stage{padding-top:18px;padding-bottom:92px}}
 @media(max-width:390px){.developer-availability{letter-spacing:.05em}.developer-location{margin-left:0}.developer-code-window{max-width:100%}.code-line{grid-template-columns:20px 1fr;gap:6px}.code-line code{font-size:8px}.developer-metrics{gap:6px}}
 @media(max-height:760px) and (min-width:761px){.developer-hero-grid{gap:25px}.developer-hero-copy h1{font-size:clamp(48px,5.5vw,70px);margin:14px 0}.developer-code-window .code-window-body{padding:12px 15px}.code-line{min-height:23px}.developer-metrics{margin-top:15px}.developer-metrics>div{min-height:62px;padding:8px 12px}}
+
+
+/* READABILITY PASS — prioritize comfortable real-world viewing over micro-label aesthetics. */
+.portfolio-slides{font-size:16px}
+.slides-header{height:88px}
+.resort-brand b{font-size:13px;letter-spacing:.16em}
+.slides-header-center{font-size:11px;letter-spacing:.12em}
+.slides-menu-toggle{font-size:11px!important;letter-spacing:.1em}
+.slides-menu{width:285px;padding:11px}
+.slides-menu button{font-size:12px;padding:15px;gap:15px}
+.slides-stage{inset:88px 0 62px;padding:clamp(28px,5vh,58px) 14vw clamp(38px,6vh,70px) 9vw}
+.slides-enter{width:min(100%,1120px)}
+.resort-room-label{font-size:10px;letter-spacing:.15em;max-width:920px}
+.resort-kicker{font-size:11px;letter-spacing:.14em}
+.chapter-content{max-width:940px}
+.chapter-content h1{font-size:clamp(64px,7.1vw,108px)}
+.chapter-content h2{font-size:clamp(54px,5.8vw,84px)}
+.chapter-lead{max-width:680px;font-size:clamp(16px,1.35vw,19px);line-height:1.75}
+.chapter-copy{max-width:760px;font-size:15px;line-height:1.85}
+.resort-primary{min-height:54px;padding:0 22px;font-size:11px;letter-spacing:.1em}
+.resort-quiet{font-size:11px;letter-spacing:.1em}
+.arrival-note{font-size:10px;letter-spacing:.1em}
+.story-facts{max-width:840px;gap:13px}
+.story-facts>div{min-height:116px;padding:19px}
+.story-facts strong{font-size:40px}
+.story-facts small{font-size:9px;letter-spacing:.08em}
+.experience-list{gap:16px}
+.experience-list article{padding:23px}
+.experience-top{font-size:10px;letter-spacing:.06em}
+.experience-list h3{font-size:25px}
+.experience-list p,.experience-list li{font-size:14px;line-height:1.75}
+.micro-note{font-size:10px;letter-spacing:.1em}
+.education-strip article{padding:17px 19px}
+.education-strip small{font-size:10px}
+.education-strip strong{font-size:15px}
+.education-strip span{font-size:13px}
+.skill-card{padding:18px}
+.skill-card h3{font-size:11px}
+.skill-card>div span,.project-tags span{font-size:10px;padding:6px 8px}
+.recognition-line{font-size:12px}
+.project-grid{gap:14px}
+.project-card{min-height:205px;padding:18px}
+.project-card-top{font-size:10px}
+.project-card>small{font-size:9px}
+.project-card h3{font-size:22px}
+.project-card p{font-size:13px;line-height:1.7}
+.project-tags span{font-size:9px}
+.finale-links a{font-size:11px}
+.finale-signoff{font-size:10px}
+.resort-side-label{font-size:9px}
+.resort-chapter-rail{gap:13px}
+.rail-title{font-size:9px}
+.resort-chapter-rail button{grid-template-columns:25px 42px auto;gap:10px;min-height:27px}
+.resort-chapter-rail button>span,.resort-chapter-rail button small{font-size:9px}
+.resort-chapter-rail button i{width:26px}
+.resort-chapter-rail button:hover i,.resort-chapter-rail button.active i{width:42px}
+.slides-bottom{height:62px;font-size:9px;letter-spacing:.08em}
+.slides-bottom-center button{font-size:9px}
+.slides-arrows{bottom:80px}
+.slides-arrows button{width:44px;height:44px}
+.resort-corner-mark{font-size:9px}
+.developer-availability{font-size:10px;letter-spacing:.08em}
+.developer-hero-copy h1{font-size:clamp(68px,7vw,96px)}
+.developer-stack-line{font-size:9px;letter-spacing:.08em}
+.code-window-top{height:46px;font-size:10px}
+.code-window-live{font-size:9px}
+.code-window-body{padding:23px 20px}
+.code-line{grid-template-columns:30px 1fr;min-height:31px;gap:12px}
+.code-line>span{font-size:10px}
+.code-line code{font-size:12px}
+.code-window-bottom{height:36px;font-size:9px}
+.developer-metrics>div{min-height:88px;padding:14px 17px}
+.developer-metrics strong{font-size:32px}
+.developer-metrics small{font-size:8px;letter-spacing:.07em}
+.developer-location-card>span{font-size:9px}
+@media(max-width:1100px){
+ .slides-stage{padding-left:7vw;padding-right:14vw}
+ .chapter-content h1{font-size:clamp(60px,7vw,90px)}
+ .developer-hero-copy h1{font-size:clamp(60px,6.5vw,82px)}
+ .resort-chapter-rail button small{font-size:8px}
+}
+@media(max-width:760px){
+ .slides-header{height:70px;padding:0 17px}
+ .resort-brand b{font-size:11px}
+ .slides-menu-toggle{font-size:10px!important}
+ .slides-menu{top:62px;width:min(290px,calc(100vw - 28px))}
+ .slides-stage{inset:70px 0 52px;padding:24px 19px 92px}
+ .resort-room-label{font-size:9px;letter-spacing:.09em;margin-bottom:22px}
+ .resort-kicker{font-size:10px;letter-spacing:.1em}
+ .chapter-content h1{font-size:clamp(54px,11.5vw,78px)}
+ .chapter-content h2{font-size:clamp(42px,9vw,60px)}
+ .developer-hero-copy h1{font-size:clamp(55px,12vw,76px)}
+ .chapter-lead{font-size:15px;line-height:1.7}
+ .chapter-copy{font-size:14px;line-height:1.75}
+ .resort-primary{min-height:49px;font-size:10px}
+ .resort-quiet{font-size:10px}
+ .arrival-note{font-size:9px;line-height:1.5}
+ .story-facts{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+ .story-facts>div{min-height:84px;padding:10px}
+ .story-facts strong{font-size:27px}
+ .story-facts small{font-size:7px;line-height:1.45}
+ .experience-list{grid-template-columns:1fr;gap:9px}
+ .experience-list article{padding:15px}
+ .experience-top{font-size:8px}
+ .experience-list h3{font-size:20px}
+ .experience-list p,.experience-list li{font-size:12px;line-height:1.65}
+ .education-strip small{font-size:9px}
+ .education-strip strong{font-size:14px}
+ .education-strip span{font-size:12px}
+ .skill-card{padding:12px}
+ .skill-card h3{font-size:9px}
+ .skill-card>div span,.project-tags span{font-size:8px;padding:5px 6px}
+ .recognition-line{font-size:10px}
+ .project-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;max-height:44vh}
+ .project-card{min-height:180px;padding:12px}
+ .project-card-top{font-size:8px}
+ .project-card>small{font-size:7px}
+ .project-card h3{font-size:17px}
+ .project-card p{font-size:11px;line-height:1.55}
+ .project-tags span{font-size:7px}
+ .slides-bottom{height:52px;padding:0 13px;font-size:7px}
+ .slides-bottom-center{gap:8px}
+ .slides-bottom-center button{font-size:7px}
+ .slides-arrows{bottom:63px;right:14px}
+ .slides-arrows button{width:36px;height:36px}
+ .developer-availability{font-size:8px;line-height:1.5}
+ .developer-stack-line{font-size:8px}
+ .code-window-top{height:40px;font-size:9px}
+ .code-window-body{padding:12px 13px}
+ .code-line{min-height:24px;grid-template-columns:22px 1fr;gap:8px}
+ .code-line>span{font-size:8px}
+ .code-line code{font-size:9px}
+ .code-window-bottom{font-size:7px;height:30px}
+ .developer-metrics>div{min-height:68px;padding:9px 11px}
+ .developer-metrics strong{font-size:25px}
+ .developer-metrics small{font-size:7px}
+ .developer-location-card>span{font-size:8px}
+ .finale-links a{font-size:9px}
+ .finale-signoff{font-size:8px}
+}
+@media(max-width:390px){
+ .slides-stage{padding-left:15px;padding-right:15px}
+ .chapter-content h1{font-size:52px}
+ .chapter-content h2{font-size:39px}
+ .chapter-lead{font-size:14px}
+ .chapter-copy{font-size:13px}
+ .story-facts small{font-size:6px}
+ .project-card h3{font-size:15px}
+ .project-card p{font-size:10px}
+}
+@media(max-height:760px) and (min-width:761px){
+ .slides-stage{padding-top:18px;padding-bottom:22px}
+ .chapter-content h1{font-size:clamp(56px,6vw,82px)}
+ .chapter-content h2{font-size:clamp(46px,5vw,68px)}
+ .chapter-lead{font-size:15px}
+ .developer-hero-copy h1{font-size:clamp(58px,6vw,80px)}
+ .developer-metrics>div{min-height:68px}
+ .experience-list article{padding:15px}
+ .experience-list p,.experience-list li{font-size:12px}
+}
