@@ -34,7 +34,6 @@ export function CinematicTour({ onClose }: { onClose: () => void }) {
     if (node) {
       node.pause()
       node.currentTime = 0
-      node.load()
     }
   }, [active])
 
@@ -69,7 +68,7 @@ export function CinematicTour({ onClose }: { onClose: () => void }) {
       setProgress(0)
       setCompleted(false)
     }
-    node.load()
+    if (failed) node.load()
     try {
       await node.play()
       setPlaying(true)
