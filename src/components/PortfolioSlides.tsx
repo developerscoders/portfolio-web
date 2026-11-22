@@ -120,6 +120,8 @@ export default function PortfolioSlides() {
     }
     let wheelTime = 0
     const onWheel = (event: WheelEvent) => {
+      const nested = (event.target as HTMLElement | null)?.closest('.slide-project-grid') as HTMLElement | null
+      if (nested && ((event.deltaY < 0 && nested.scrollTop > 0) || (event.deltaY > 0 && nested.scrollTop + nested.clientHeight < nested.scrollHeight - 1))) return
       if (Math.abs(event.deltaY) < 24) return
       const now = Date.now()
       if (now - wheelTime < 850) return
@@ -156,9 +158,9 @@ export default function PortfolioSlides() {
     {menuOpen && <nav className="slides-menu">{slides.map((s, i) => <button key={s.id} className={i === active ? 'active' : ''} onClick={() => goTo(i)}><span>{s.number}</span>{s.title}</button>)}</nav>}
     <div className="slides-chapter-label"><span>{activeSlide.number}</span><i/>{activeSlide.label}</div>
     <section className="slides-stage" aria-live="polite"><div key={activeSlide.id} className="slides-enter"><SlideContent index={active} onNavigate={goTo} onSpeak={speak}/></div></section>
-    <Suspense fallback={<div className="avatar-loading">LOADING AVATAR…</div>}>
+    {(active === 0 || active === 1) && <Suspense fallback={<div className="avatar-loading">LOADING AVATAR…</div>}>
       <AvatarCompanion mode={active === 0 ? 'hero' : 'resident'}/>
-    </Suspense>
+    </Suspense>}
     <aside className="slides-side-controls"><span>CHOOSE A CHAPTER</span>{slides.map((s, i) => <button key={s.id} className={i === active ? 'active' : ''} onClick={() => goTo(i)} aria-label={'Go to '+s.title}><b>{s.number}</b><i/></button>)}</aside>
     <div className="slides-bottom"><span><i/> ENVIRONMENT {videoFailed ? 'ASSET MISSING' : videoReady ? 'ONLINE' : 'LOADING'} · BUILD 005</span><div className="slides-bottom-center"><button onClick={togglePlay}>{playing ? <Pause size={13}/> : <Play size={13}/>} {playing ? 'PAUSE FILM' : 'PLAY FILM'}</button><span>{activeSlide.number} / 06</span></div><span>© 2026 PALLAV BURNWAL</span></div>
     <div className="slides-arrows"><button onClick={() => goTo(active - 1)} disabled={active === 0} aria-label="Previous slide"><ArrowLeft/></button><button onClick={() => goTo(active + 1)} disabled={active === slides.length - 1} aria-label="Next slide"><ArrowRight/></button></div>
