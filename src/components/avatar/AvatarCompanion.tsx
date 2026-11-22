@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useMemo, useRef, useState } from 'react'
+import { Suspense, useEffect, useMemo, useRef, useState, type MutableRefObject } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Html, useGLTF } from '@react-three/drei'
 import * as THREE from 'three'
@@ -6,10 +6,10 @@ import { MessageCircle, Mic, Volume2, X } from 'lucide-react'
 import './avatar.css'
 
 type Mode = 'hero' | 'resident'
-type AvatarProps = { mode: Mode; onSpeak: (text: string) => void }
+type AvatarProps = { mode: Mode }
 type Motion = { gaze: THREE.Vector2; jaw: number; speaking: boolean }
 
-function RiggedHuman({ motion }: { motion: React.MutableRefObject<Motion> }) {
+function RiggedHuman({ motion }: { motion: MutableRefObject<Motion> }) {
   const { scene } = useGLTF('/models/pallav-avatar.glb')
   const head = useMemo(() => scene.getObjectByName('Head') || scene.getObjectByName('head'), [scene])
   const leftEye = useMemo(() => scene.getObjectByName('LeftEye') || scene.getObjectByName('leftEye') || scene.getObjectByName('mixamorigLeftEye'), [scene])
@@ -43,7 +43,7 @@ function Scene({ motion }: { motion: React.MutableRefObject<Motion> }) {
   </Canvas>
 }
 
-export default function AvatarCompanion({ mode, onSpeak }: AvatarProps) {
+export default function AvatarCompanion({ mode }: AvatarProps) {
   const [modelReady, setModelReady] = useState(false)
   const [open, setOpen] = useState(true)
   const [speaking, setSpeaking] = useState(false)
@@ -100,7 +100,7 @@ export default function AvatarCompanion({ mode, onSpeak }: AvatarProps) {
   return <aside className={'avatar-companion '+(mode === 'hero' ? 'avatar-hero' : 'avatar-resident')} aria-label="Pallav's digital avatar">
     <div className="avatar-topline"><span><i/> PALLAV · DIGITAL TWIN</span><button onClick={() => setOpen(false)} aria-label="Minimize avatar"><X size={14}/></button></div>
     <div className="avatar-visual">
-      {modelReady ? <Scene motion={motion}/> : <div className="avatar-photo-fallback"><div className="avatar-photo-message"><strong>YOUR 3D AVATAR</strong><span>Add the rigged model at <code>/public/models/pallav-avatar.glb</code></span></div><div className="avatar-silhouette"><div className="avatar-silhouette-head"/><div className="avatar-silhouette-body"/></div></div>}
+      {modelReady ? <Scene motion={motion}/> : <div className="avatar-photo-fallback"><img className="avatar-reference-photo" src="/pallav-avatar.jpg" alt="Pallav portrait reference" onError={event => { event.currentTarget.style.display = "none" }}/><div className="avatar-photo-message"><strong>YOUR 3D AVATAR</strong><span>Add the rigged model at <code>/public/models/pallav-avatar.glb</code></span></div><div className="avatar-silhouette"><div className="avatar-silhouette-head"/><div className="avatar-silhouette-body"/></div></div>}
       <span className="avatar-status">{speaking ? 'SPEAKING' : modelReady ? 'EYE TRACKING READY' : 'MODEL ASSET NEEDED'}</span>
     </div>
     <div className="avatar-caption"><div><strong>{speaking ? 'Speaking with you' : 'Hey, I’m Pallav.'}</strong><p>{modelReady ? 'My eyes follow your cursor. Ask me about the work.' : 'The interactive avatar rig will appear here once its GLB asset is added.'}</p></div><button onClick={() => say(greeting)} disabled={!available} aria-label="Play welcome voice"><Mic size={15}/><span>{speaking ? 'SPEAKING' : 'SAY HELLO'}</span></button></div>
