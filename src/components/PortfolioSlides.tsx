@@ -86,6 +86,7 @@ export default function PortfolioSlides() {
   const [playing, setPlaying] = useState(true)
   const [menuOpen, setMenuOpen] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
+  const stageRef = useRef<HTMLElement>(null)
   const touchStart = useRef<number | null>(null)
   const lock = useRef(false)
   const activeSlide = slides[active]
@@ -121,19 +122,29 @@ export default function PortfolioSlides() {
     }
     let wheelTime = 0
     const onWheel = (event: WheelEvent) => {
-      const target = event.target as HTMLElement | null
-      const nested = target?.closest('.slide-project-grid, .slides-stage') as HTMLElement | null
-      if (nested && ((event.deltaY < 0 && nested.scrollTop > 0) || (event.deltaY > 0 && nested.scrollTop + nested.clientHeight < nested.scrollHeight - 1))) return
       if (Math.abs(event.deltaY) < 24) return
+      const target = event.target as HTMLElement | null
+      const scrollable = target?.closest('.slide-project-grid, .slides-stage') as HTMLElement | null
+      if (scrollable && scrollable.scrollHeight > scrollable.clientHeight + 2) {
+        const canScroll = event.deltaY > 0
+          ? scrollable.scrollTop + scrollable.clientHeight < scrollable.scrollHeight - 2
+          : scrollable.scrollTop > 2
+        if (canScroll) return
+      }
       const now = Date.now()
-      if (now - wheelTime < 850) return
+      if (now - wheelTime < 700) return
       wheelTime = now
+      event.preventDefault()
       goTo(active + (event.deltaY > 0 ? 1 : -1))
     }
     window.addEventListener('keydown', onKey)
-    window.addEventListener('wheel', onWheel, { passive: true })
+    window.addEventListener('wheel', onWheel, { passive: false })
     return () => { window.removeEventListener('keydown', onKey); window.removeEventListener('wheel', onWheel) }
   }, [active, goTo])
+
+  useEffect(() => {
+    if (stageRef.current) stageRef.current.scrollTop = 0
+  }, [active])
 
   useEffect(() => {
     const node = videoRef.current
@@ -158,8 +169,7 @@ export default function PortfolioSlides() {
     <div className="slides-video-layer" aria-hidden="true"><video ref={videoRef} className={videoReady ? 'slides-video ready' : 'slides-video'} muted={muted} playsInline loop preload="none" onCanPlay={() => setVideoReady(true)} onPlaying={() => setVideoReady(true)} onError={() => { setVideoFailed(true); setVideoReady(false) }}/><div className="slides-video-fallback"/><div className="slides-video-shade"/></div>
     <header className="slides-header"><button className="slides-brand" onClick={() => goTo(0)}><span>P.</span> PALLAV.</button><div className="slides-header-center"><i/> INTERACTIVE PORTFOLIO <b>/</b> 3D RESIDENCE</div><div className="slides-header-actions"><button aria-label={muted ? 'Unmute video' : 'Mute video'} onClick={() => setMuted(v => !v)}>{muted ? <VolumeX size={17}/> : <Volume2 size={17}/>}</button><a href="https://github.com/developerscoders" aria-label="GitHub" target="_blank" rel="noreferrer"><Github size={17}/></a><a href="https://linkedin.com/in/pallavburnwal" aria-label="LinkedIn" target="_blank" rel="noreferrer"><Linkedin size={17}/></a><button className="slides-menu-toggle" onClick={() => setMenuOpen(v => !v)}>CHAPTERS</button></div></header>
     {menuOpen && <nav className="slides-menu">{slides.map((s, i) => <button key={s.id} className={i === active ? 'active' : ''} onClick={() => goTo(i)}><span>{s.number}</span>{s.title}</button>)}</nav>}
-    <div className="slides-chapter-label"><span>{activeSlide.number}</span><i/>{activeSlide.label}</div>
-    <section className="slides-stage" aria-live="polite"><div key={activeSlide.id} className="slides-enter"><SlideContent index={active} onNavigate={goTo} onSpeak={speak}/></div></section>
+    <section ref={stageRef} className={'slides-stage '+(active <= 1 ? 'slides-stage-avatar' : '')} aria-live="polite"><div key={activeSlide.id} className="slides-enter"><SlideContent index={active} onNavigate={goTo} onSpeak={speak}/></div></section>
     {(active === 0 || active === 1) && <Suspense fallback={<div className="avatar-loading">LOADING AVATAR…</div>}>
       <AvatarCompanion mode={active === 0 ? 'hero' : 'resident'}/>
     </Suspense>}
