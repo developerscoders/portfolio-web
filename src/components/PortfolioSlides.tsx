@@ -83,6 +83,7 @@ export default function PortfolioSlides() {
   const videoRef = useRef<HTMLVideoElement>(null)
   const stageRef = useRef<HTMLElement>(null)
   const wheelLock = useRef(0)
+  const loadedVideo = useRef('')
   const touchStart = useRef<number | null>(null)
   const chapter = chapters[active]
   const goTo = useCallback((next: number) => {
@@ -101,6 +102,12 @@ export default function PortfolioSlides() {
     }
     const onWheel = (event: WheelEvent) => {
       if (Math.abs(event.deltaY) < 28) return
+      const target = event.target as HTMLElement | null
+      const scrollable = target?.closest('.project-grid, .slides-stage') as HTMLElement | null
+      if (scrollable && scrollable.scrollHeight > scrollable.clientHeight + 2) {
+        const canScroll = event.deltaY > 0 ? scrollable.scrollTop + scrollable.clientHeight < scrollable.scrollHeight - 2 : scrollable.scrollTop > 2
+        if (canScroll) return
+      }
       const now = Date.now()
       if (now - wheelLock.current < 760) return
       wheelLock.current = now
@@ -114,8 +121,11 @@ export default function PortfolioSlides() {
   useEffect(() => {
     const node = videoRef.current
     if (!node) return
-    setVideoReady(false); setVideoFailed(false); node.pause(); node.src = chapter.file; node.load()
+    if (loadedVideo.current !== chapter.file) {
+      setVideoReady(false); setVideoFailed(false); node.pause(); node.src = chapter.file; node.load(); loadedVideo.current = chapter.file
+    }
     if (playing) node.play().catch(() => setVideoFailed(true))
+    else node.pause()
   }, [chapter.file, playing])
   useEffect(() => { if (videoRef.current) videoRef.current.muted = muted }, [muted])
   const togglePlay = () => {
@@ -124,7 +134,7 @@ export default function PortfolioSlides() {
     if (node.paused) node.play().then(() => setPlaying(true)).catch(() => setVideoFailed(true))
     else { node.pause(); setPlaying(false) }
   }
-  return <main className="portfolio-slides resort-portfolio" onTouchStart={e => { touchStart.current = e.touches[0]?.clientY ?? null }} onTouchEnd={e => { if (touchStart.current === null) return; const delta = touchStart.current - (e.changedTouches[0]?.clientY ?? touchStart.current); if (Math.abs(delta) > 55) goTo(active + (delta > 0 ? 1 : -1)); touchStart.current = null }}>
+  return <main className="portfolio-slides resort-portfolio" onTouchStart={e => { touchStart.current = e.target instanceof Element && e.target.closest('.project-grid') ? null : (e.touches[0]?.clientY ?? null) }} onTouchEnd={e => { if (touchStart.current === null) return; const delta = touchStart.current - (e.changedTouches[0]?.clientY ?? touchStart.current); if (Math.abs(delta) > 55) goTo(active + (delta > 0 ? 1 : -1)); touchStart.current = null }}>
     <div className="slides-video-layer" aria-hidden="true"><video ref={videoRef} className={videoReady ? 'slides-video ready' : 'slides-video'} muted playsInline loop preload="none" onCanPlay={() => setVideoReady(true)} onPlaying={() => setVideoReady(true)} onError={() => { setVideoFailed(true); setVideoReady(false) }}/><div className="slides-video-fallback"/><div className="slides-video-shade"/></div>
     <div className="resort-grain" aria-hidden="true"/><div className="resort-light-orb" aria-hidden="true"/><div className="resort-vignette" aria-hidden="true"/>
     <header className="slides-header resort-header"><button className="slides-brand resort-brand" onClick={() => goTo(0)}><span>P.</span><b>PALLAV <i>BURNWAL</i></b></button><div className="slides-header-center"><i/> A PORTFOLIO IN SIX CHAPTERS <b>/</b> EST. 2026</div><div className="slides-header-actions"><button aria-label={muted ? 'Unmute video' : 'Mute video'} onClick={() => setMuted(v => !v)}>{muted ? <VolumeX size={17}/> : <Volume2 size={17}/>}</button><a href="https://github.com/developerscoders" aria-label="GitHub" target="_blank" rel="noreferrer"><Github size={17}/></a><a href="https://linkedin.com/in/pallavburnwal" aria-label="LinkedIn" target="_blank" rel="noreferrer"><Linkedin size={17}/></a><button className="slides-menu-toggle" onClick={() => setMenuOpen(v => !v)}>EXPLORE <span>☰</span></button></div></header>
