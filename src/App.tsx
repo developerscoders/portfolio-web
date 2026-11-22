@@ -29,6 +29,7 @@ export default function App() {
     <main className="experience">
       {!cinematic && <div className="scene-wrap">
         <Canvas
+          frameloop={cinematic ? 'never' : 'always'}
           shadows={false}
           dpr={[1, 1.25]}
           camera={{ position: [9, 6, 12], fov: 42, near: 0.1, far: 100 }}
