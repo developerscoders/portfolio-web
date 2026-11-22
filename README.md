@@ -39,3 +39,23 @@ The architecture and furniture are procedural Three.js geometry and physically b
 
 ## Current limitations
 The character remains a geometric placeholder, not the portrait-matched rigged avatar. Collision-aware navigation, stair traversal, interactive project panels, detailed PBR texture maps and a production build verification remain follow-up work.
+
+## Phase 3 — Cinematic tour integration
+
+The site now includes a six-scene cinematic tour player synchronized by chapter:
+1. Residence exterior
+2. Living room
+3. Developer studio
+4. Upper floor
+5. Project gallery
+6. Terrace finale
+
+Place the generated MP4 clips in `public/videos/` using these exact names:
+- `01-residence-exterior.mp4`
+- `02-living-room.mp4`
+- `03-developer-studio.mp4`
+- `04-upper-floor.mp4`
+- `05-project-gallery.mp4`
+- `06-terrace-finale.mp4`
+
+The player includes chapter navigation, progress, mute, pause, next/previous and a graceful missing-asset message. Video files are not included in the repository yet; they must be generated and added separately.
