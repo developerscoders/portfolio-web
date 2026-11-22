@@ -90,15 +90,15 @@ export function CinematicTour({ onClose }: { onClose: () => void }) {
 
   return <section className="cinematic-tour" aria-label="Cinematic residence tour">
     <header className="cinematic-top">
-      <div className="cinematic-brand"><span className="brand-mark">P.</span><span>PALLAV <i>/ CINEMATIC RESIDENCE</i></span></div>
-      <div className="cinematic-top-center"><Film size={14}/> SIX CHAPTERS <span>·</span> SELECT A CHAPTER TO EXPLORE</div>
-      <button className="cinematic-icon" onClick={onClose} aria-label="Close cinematic tour"><X size={19}/></button>
+      <div className="cinematic-brand"><span className="brand-mark">P.</span><span>PALLAV BURNWAL<i>/ CINEMATIC RESIDENCE</i></span></div>
+      <div className="cinematic-top-center"><Film size={14} /> SIX CHAPTERS <span>·</span> SELECT A CHAPTER TO EXPLORE</div>
+      <button className="cinematic-icon" onClick={onClose} aria-label="Close cinematic tour"><X size={19} /></button>
     </header>
 
     <div className="cinematic-layout">
       <aside className="cinematic-chapters">
         <div className="cinematic-section-label">THE FILM <span>01 — 06</span></div>
-        <h2>Explore the<br/><em>residence.</em></h2>
+        <h2>Explore the<br /><em>residence.</em></h2>
         <p className="cinematic-intro">A guided visual journey through the spaces, work and ideas that make up my digital home.</p>
         <nav className="chapter-list" aria-label="Film chapters">
           {chapters.map((item, index) => <button
@@ -112,13 +112,13 @@ export function CinematicTour({ onClose }: { onClose: () => void }) {
             <span className="chapter-arrow">↗</span>
           </button>)}
         </nav>
-        <div className="cinematic-side-note"><span className="live-dot"/> CHOOSE ANY CHAPTER · WATCH AT YOUR PACE</div>
+        <div className="cinematic-side-note"><span className="live-dot" /> CHOOSE ANY CHAPTER · WATCH AT YOUR PACE</div>
       </aside>
 
       <main className="cinematic-stage">
         <div className="cinematic-stage-art" aria-hidden="true">
-          <div className="stage-glow"/>
-          <div className="stage-grid"/>
+          <div className="stage-glow" />
+          <div className="stage-grid" />
           <div className="stage-index">P / RESIDENCE FILM</div>
         </div>
         <video
@@ -143,29 +143,29 @@ export function CinematicTour({ onClose }: { onClose: () => void }) {
         />
         {!ready && <div className="cinematic-stage-placeholder">
           <span className="placeholder-kicker">CHAPTER {String(active + 1).padStart(2, '0')} / 06</span>
-          <Film size={34}/>
+          <Film size={34} />
           <strong>{failed ? 'VIDEO ASSET NOT FOUND' : chapter.title}</strong>
           <span>{failed ? 'Add the MP4 file at the path shown below to activate this chapter.' : 'Select PLAY CHAPTER to load this 720p film.'}</span>
           {failed && <code>public{chapter.file}</code>}
         </div>}
-        <div className="cinematic-stage-shade"/>
+        <div className="cinematic-stage-shade" />
         <div className="cinematic-stage-heading">
           <div className="cinematic-kicker">{chapter.category} <span>· 720P CINEMATIC</span></div>
           <h3>{chapter.title}</h3>
           <p>{chapter.subtitle}</p>
           <div className="cinematic-controls">
             <button className="cinematic-play" onClick={() => playing ? pause() : play()}>
-              {playing ? <Pause size={16}/> : <Play size={16}/>}
+              {playing ? <Pause size={16} /> : <Play size={16} />}
               {playing ? 'PAUSE CHAPTER' : completed ? 'REPLAY CHAPTER' : failed ? 'RETRY CHAPTER' : 'PLAY CHAPTER'}
             </button>
-            <button className="cinematic-icon" onClick={() => setMuted(value => !value)} aria-label="Toggle mute">{muted ? <VolumeX size={17}/> : <Volume2 size={17}/>}</button>
-            <button className="cinematic-icon" onClick={previous} disabled={active === 0} aria-label="Previous chapter"><ArrowLeft size={17}/></button>
-            <button className="cinematic-icon" onClick={next} disabled={active === chapters.length - 1} aria-label="Next chapter"><ArrowRight size={17}/></button>
+            <button className="cinematic-icon" onClick={() => setMuted(value => !value)} aria-label="Toggle mute">{muted ? <VolumeX size={17} /> : <Volume2 size={17} />}</button>
+            <button className="cinematic-icon" onClick={previous} disabled={active === 0} aria-label="Previous chapter"><ArrowLeft size={17} /></button>
+            <button className="cinematic-icon" onClick={next} disabled={active === chapters.length - 1} aria-label="Next chapter"><ArrowRight size={17} /></button>
           </div>
           {loading && <div className="cinematic-buffering" role="status">LOADING CHAPTER…</div>}
         </div>
         <div className="cinematic-stage-footer">
-          <div className="chapter-progress"><span style={{ transform: 'scaleX(' + progress + ')' }}/></div>
+          <div className="chapter-progress"><span style={{ transform: 'scaleX(' + progress + ')' }} /></div>
           <div><span>{completed ? 'CHAPTER COMPLETE' : playing ? 'NOW PLAYING' : failed ? 'ASSET REQUIRED' : 'READY TO EXPLORE'}</span><span>{String(active + 1).padStart(2, '0')} / 06</span></div>
         </div>
       </main>

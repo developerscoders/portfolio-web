@@ -86,8 +86,8 @@ export default function PortfolioExperience() {
           <button onClick={() => scrollTo('contact')}>CONTACT</button>
         </nav>
         <div className="pf-socials">
-          <a href="https://github.com/developerscoders" target="_blank" rel="noreferrer" aria-label="GitHub"><Github size={17}/></a>
-          <a href="https://linkedin.com/in/pallavburnwal" target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={17}/></a>
+          <a href="https://github.com/developerscoders" target="_blank" rel="noreferrer" aria-label="GitHub"><Github size={17} /></a>
+          <a href="https://linkedin.com/in/pallavburnwal" target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={17} /></a>
         </div>
       </header>
 
@@ -96,15 +96,15 @@ export default function PortfolioExperience() {
       <section id="home" data-scene="home" className="pf-section pf-hero">
         <div className="pf-content pf-hero-content">
           <SectionKicker number="01" label="SOFTWARE ENGINEER · AI BUILDER" />
-          <h1>Ideas become<br/><em>experiences.</em></h1>
+          <h1>Ideas become<br /><em>experiences.</em></h1>
           <p className="pf-lead">I’m Pallav Burnwal — a full-stack developer building thoughtful products across AI, real-time systems and the web.</p>
           <div className="pf-hero-actions">
-            <button className="pf-primary" onClick={() => scrollTo('projects')}>EXPLORE MY WORK <ArrowUpRight size={17}/></button>
-            <a className="pf-secondary" href="mailto:pallavburnwal@gmail.com"><Mail size={16}/> GET IN TOUCH</a>
+            <button className="pf-primary" onClick={() => scrollTo('projects')}>EXPLORE MY WORK <ArrowUpRight size={17} /></button>
+            <a className="pf-secondary" href="mailto:pallavburnwal@gmail.com"><Mail size={16} /> GET IN TOUCH</a>
           </div>
-          <div className="pf-hero-meta"><span><MapPin size={13}/> ASANSOL, INDIA</span><span>OPEN TO FULL-TIME · REMOTE / RELOCATION</span></div>
+          <div className="pf-hero-meta"><span><MapPin size={13} /> ASANSOL, INDIA</span><span>OPEN TO FULL-TIME · REMOTE / RELOCATION</span></div>
         </div>
-        <button className="pf-scroll-cue" onClick={() => scrollTo('about')}><span>SCROLL TO DISCOVER</span><ArrowDown size={15}/></button>
+        <button className="pf-scroll-cue" onClick={() => scrollTo('about')}><span>SCROLL TO DISCOVER</span><ArrowDown size={15} /></button>
       </section>
 
       <section id="about" data-scene="about" className="pf-section">
@@ -127,7 +127,7 @@ export default function PortfolioExperience() {
           <h2>Shipping software that <em>makes a difference.</em></h2>
           <div className="pf-timeline">
             <article className="pf-timeline-card">
-              <div className="pf-card-top"><span><BriefcaseBusiness size={15}/> HRFY.AI · KHARAR</span><time>JAN 2026 — MAY 2026</time></div>
+              <div className="pf-card-top"><span><BriefcaseBusiness size={15} /> HRFY.AI · KHARAR</span><time>JAN 2026 — MAY 2026</time></div>
               <h3>Full-Stack Developer</h3>
               <ul>
                 <li>Built asynchronous FastAPI + MongoDB/MySQL APIs serving 1,000+ daily requests with sub-second streaming inference.</li>
@@ -137,7 +137,7 @@ export default function PortfolioExperience() {
               </ul>
             </article>
             <article className="pf-timeline-card">
-              <div className="pf-card-top"><span><BriefcaseBusiness size={15}/> HRFY.AI · KHARAR</span><time>SEP 2025 — DEC 2025</time></div>
+              <div className="pf-card-top"><span><BriefcaseBusiness size={15} /> HRFY.AI · KHARAR</span><time>SEP 2025 — DEC 2025</time></div>
               <h3>Software Developer Intern</h3>
               <ul>
                 <li>Built FastAPI + MongoDB resume-parsing services and reduced extraction time by 30% through query and async optimization.</li>
@@ -154,15 +154,15 @@ export default function PortfolioExperience() {
           <SectionKicker number="04" label="THE FOUNDATION" />
           <h2>Curiosity, backed by <em>craft.</em></h2>
           <div className="pf-education-grid">
-            <article className="pf-info-card"><GraduationCap/><small> AUG 2026 — AUG 2028 · DISTANCE EDUCATION</small><h3>Master of Computer Applications</h3><p>Artificial Intelligence & Machine Learning</p><strong>Vellore Institute of Technology</strong></article>
-            <article className="pf-info-card"><GraduationCap/><small>AUG 2023 — JUL 2026</small><h3>Bachelor of Computer Applications</h3><p>Computer Applications</p><strong>Chandigarh University</strong></article>
+            <article className="pf-info-card"><GraduationCap /><small> AUG 2026 — AUG 2028 · DISTANCE EDUCATION</small><h3>Master of Computer Applications</h3><p>Artificial Intelligence & Machine Learning</p><strong>Vellore Institute of Technology</strong></article>
+            <article className="pf-info-card"><GraduationCap /><small>AUG 2023 — JUL 2026</small><h3>Bachelor of Computer Applications</h3><p>Computer Applications</p><strong>Chandigarh University</strong></article>
           </div>
           <div className="pf-skills">
-            <div><Code2/><strong>LANGUAGES</strong><p>Python · TypeScript · Java · SQL</p></div>
-            <div><Cpu/><strong>ENGINEERING</strong><p>FastAPI · Spring Boot · Node.js · React · Next.js · React Native · REST · WebSockets</p></div>
-            <div><Code2/><strong>AI / DATA / DEVOPS</strong><p>YOLOv8 · LiveKit · Deepgram · OpenAI · NVIDIA NIM · OpenRouter · MongoDB · MySQL · Redis · Docker · PyTest</p></div>
+            <div><Code2 /><strong>LANGUAGES</strong><p>Python · TypeScript · Java · SQL</p></div>
+            <div><Cpu /><strong>ENGINEERING</strong><p>FastAPI · Spring Boot · Node.js · React · Next.js · React Native · REST · WebSockets</p></div>
+            <div><Code2 /><strong>AI / DATA / DEVOPS</strong><p>YOLOv8 · LiveKit · Deepgram · OpenAI · NVIDIA NIM · OpenRouter · MongoDB · MySQL · Redis · Docker · PyTest</p></div>
           </div>
-          <div className="pf-achievements"><Trophy/><span><b>1st Place</b> — HackWithUttarPradesh (200+ teams, team lead)</span><span><b>5-Star HackerRank</b> — Python & Java</span><span><b>Microsoft Azure Fundamentals</b> — AZ-900</span><span><b>Google Developers Group</b> — Student member since 2024</span></div>
+          <div className="pf-achievements"><Trophy /><span><b>1st Place</b> — HackWithUttarPradesh (200+ teams, team lead)</span><span><b>5-Star HackerRank</b> — Python & Java</span><span><b>Microsoft Azure Fundamentals</b> — AZ-900</span><span><b>Google Developers Group</b> — Student member since 2024</span></div>
         </div>
       </section>
 
@@ -175,7 +175,7 @@ export default function PortfolioExperience() {
               <div className="pf-project-index">0{index + 1} <span>{project.type}</span></div>
               <h3>{project.name}</h3><p>{project.description}</p>
               <div className="pf-tags">{project.stack.map(tag => <span key={tag}>{tag}</span>)}</div>
-              <a href="https://github.com/developerscoders" target="_blank" rel="noreferrer">VIEW GITHUB PROFILE <ExternalLink size={13}/></a>
+              <a href="https://github.com/developerscoders" target="_blank" rel="noreferrer">VIEW GITHUB PROFILE <ExternalLink size={13} /></a>
             </article>)}
           </div>
           <div className="pf-more-projects"><span>ALSO BUILDING</span>{additionalProjects.map(name => <b key={name}>{name}</b>)}</div>
@@ -186,11 +186,11 @@ export default function PortfolioExperience() {
       <section id="contact" data-scene="contact" className="pf-section pf-contact-section">
         <div className="pf-content pf-contact-content">
           <SectionKicker number="06" label="THE NEXT CHAPTER" />
-          <h2>Have a good problem?<br/><em>Let’s build the solution.</em></h2>
+          <h2>Have a good problem?<br /><em>Let’s build the solution.</em></h2>
           <p className="pf-lead">I’m available for full-time opportunities and collaborations across full-stack engineering, AI and product development.</p>
-          <a className="pf-primary pf-contact-link" href="mailto:pallavburnwal@gmail.com">START A CONVERSATION <ArrowUpRight size={17}/></a>
+          <a className="pf-primary pf-contact-link" href="mailto:pallavburnwal@gmail.com">START A CONVERSATION <ArrowUpRight size={17} /></a>
           <div className="pf-contact-details"><a href="mailto:pallavburnwal@gmail.com">pallavburnwal@gmail.com</a><a href="tel:+917340981451">+91 73409 81451</a><span>ASANSOL, WEST BENGAL, INDIA</span></div>
-          <div className="pf-contact-socials"><a href="https://github.com/developerscoders" target="_blank" rel="noreferrer"><Github size={17}/> GITHUB</a><a href="https://linkedin.com/in/pallavburnwal" target="_blank" rel="noreferrer"><Linkedin size={17}/> LINKEDIN</a></div>
+          <div className="pf-contact-socials"><a href="https://github.com/developerscoders" target="_blank" rel="noreferrer"><Github size={17} /> GITHUB</a><a href="https://linkedin.com/in/pallavburnwal" target="_blank" rel="noreferrer"><Linkedin size={17} /> LINKEDIN</a></div>
         </div>
         <footer className="pf-footer"><span>© 2026 PALLAV BURNWAL</span><span>DESIGNED AS A DIGITAL RESIDENCE</span><button onClick={() => scrollTo('home')}>BACK TO TOP ↑</button></footer>
       </section>
