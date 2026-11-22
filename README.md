@@ -60,16 +60,29 @@ Place the generated MP4 clips in `public/videos/` using these exact names:
 
 The player includes chapter navigation, progress, mute, pause, next/previous and a graceful missing-asset message. Video files are not included in the repository yet; they must be generated and added separately.
 
-## Phase 4 — Avatar and slide portfolio
+## Phase 4 — Animated slide portfolio
 
-The main portfolio now uses six full-screen animated slides rather than a long scrolling page. Navigate with the right/left arrows, mouse wheel, touch swipe, keyboard arrows/PageUp/PageDown, or the chapter selector. Each slide selects its matching 720p cinematic background clip.
+The portfolio uses six full-screen animated slides rather than a long scrolling page. Navigate with the left/right arrows, mouse wheel, touch swipe, keyboard arrows/PageUp/PageDown, or chapter selector. Each slide selects its matching 720p cinematic background clip.
 
-The avatar runtime is lazy-loaded and uses browser-native SpeechSynthesis for free device-provided voice. It checks for `public/models/pallav-avatar.glb`; when present, the Three.js avatar runtime tracks the global pointer through eye bones and head bone and drives supported mouth morph targets from speech boundary events. The browser voice is device-dependent; a male-sounding English voice is selected when the OS exposes one, but the browser cannot guarantee a male voice on every device.
+## Phase A — Procedural avatar (no GLB required)
 
-### Required personal avatar assets
+The avatar is constructed at runtime with Three.js geometry inside React Three Fiber. No external character model, GLB download, image-to-3D service or paid rigging export is required.
 
-- Add your approved portrait as `public/pallav-avatar.jpg` for the portrait fallback.
-- Add a genuinely rigged, photorealistic GLB as `public/models/pallav-avatar.glb` for full 3D eye/head tracking and mouth morphs.
-- The GLB rig naming and performance requirements are documented in `public/models/README.md`.
+Implemented:
+- Procedural upper-body male bust with dark hair, beard, facial features, black sweatshirt and bronze N detail.
+- Cursor-following eye groups with bounded rotation and delayed head movement.
+- Randomized natural blink animation.
+- Subtle torso breathing and idle sway.
+- Articulated jaw and mouth movement driven by speech-synthesis boundary events.
+- Browser-native SpeechSynthesis for the automatic welcome and replay-intro control.
+- Optional visitor voice input using the browser SpeechRecognition API, where supported.
+- Local portfolio FAQ responses for projects, skills, experience, education and contact.
+- Lazy loading of the avatar component and a low-power, capped-DPR WebGL canvas.
 
-A single portrait is not itself a rigged 3D model. The repository contains the loader, controls and animation hooks, but does not claim to contain a generated or rigged identity-matched model until that GLB is supplied. Native browser TTS provides free speech; its boundary events are approximate mouth cues, not phoneme-accurate visemes.
+### Voice and browser support
+
+SpeechSynthesis voices are supplied by the visitor's operating system/browser. The app prefers an available English voice and attempts to choose an Indian English voice where possible; it cannot guarantee a male voice on every device. SpeechRecognition is not supported in every browser and may require microphone permission. The conversational response layer currently uses local intent matching and predefined portfolio answers; it is not a connected generative AI chatbot.
+
+### Visual limitation
+
+This is a procedural geometric character, not a photorealistic digital twin. Its face, hair and clothing are assembled from runtime geometry and materials. It does not reproduce the exact facial identity of a photograph, and volume/word-boundary mouth cues are approximate rather than phoneme-accurate visemes. The benefit is a fully self-contained, free-to-render avatar with no GLB dependency.
