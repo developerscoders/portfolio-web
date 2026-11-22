@@ -26,19 +26,32 @@ function SectionKicker({ number, label }: { number: string; label: string }) {
 }
 
 function AvatarWelcome() {
-  const [pupil, setPupil] = useState({ x: 0, y: 0 })
+  const [look, setLook] = useState({ x: 0, y: 0 })
   const [speaking, setSpeaking] = useState(false)
   const [speechAvailable, setSpeechAvailable] = useState(false)
   const welcome = "Hey, I'm Pallav. Welcome to my digital residence! I'm a full-stack developer and AI builder. Feel free to explore my work, projects and experience. Let's build something amazing together."
+
+  const getMaleEnglishVoice = () => {
+    const voices = window.speechSynthesis.getVoices()
+    const english = voices.filter(voice => voice.lang.toLowerCase().startsWith('en'))
+    const indianMale = english.find(voice =>
+      voice.lang.toLowerCase().startsWith('en-in') &&
+      /\b(ravi|prabhat|male)\b/i.test(voice.name)
+    )
+    const labelledMale = english.find(voice =>
+      /\b(male|david|mark|guy|ryan|daniel|james|george|thomas|oliver|aaron|alex|ravi|prabhat)\b/i.test(voice.name)
+    )
+    return indianMale || labelledMale || english.find(voice => voice.lang.toLowerCase().startsWith('en-in')) || english[0]
+  }
 
   const speak = () => {
     if (!('speechSynthesis' in window)) return
     window.speechSynthesis.cancel()
     const message = new SpeechSynthesisUtterance(welcome)
-    message.lang = 'en-IN'
-    message.rate = 0.96
-    message.pitch = 1.02
-    const voice = window.speechSynthesis.getVoices().find(item => item.lang.toLowerCase().startsWith('en-in'))
+    const voice = getMaleEnglishVoice()
+    message.lang = voice?.lang || 'en-IN'
+    message.rate = 0.94
+    message.pitch = 0.88
     if (voice) message.voice = voice
     message.onstart = () => setSpeaking(true)
     message.onend = () => setSpeaking(false)
@@ -57,20 +70,36 @@ function AvatarWelcome() {
     }
   }, [])
 
-  const trackEyes = (event: React.PointerEvent<HTMLDivElement>) => {
-    const rect = event.currentTarget.getBoundingClientRect()
-    const x = ((event.clientX - rect.left) / rect.width - 0.5) * 2
-    const y = ((event.clientY - rect.top) / rect.height - 0.5) * 2
-    setPupil({ x: Math.max(-1, Math.min(1, x)), y: Math.max(-1, Math.min(1, y)) })
-  }
+  useEffect(() => {
+    let frame = 0
+    const trackCursor = (event: PointerEvent) => {
+      if (frame) window.cancelAnimationFrame(frame)
+      frame = window.requestAnimationFrame(() => {
+        const x = (event.clientX / Math.max(window.innerWidth, 1) - 0.5) * 2
+        const y = (event.clientY / Math.max(window.innerHeight, 1) - 0.5) * 2
+        setLook({ x: Math.max(-1, Math.min(1, x)), y: Math.max(-1, Math.min(1, y)) })
+      })
+    }
+    const reset = () => setLook({ x: 0, y: 0 })
+    window.addEventListener('pointermove', trackCursor, { passive: true })
+    window.addEventListener('blur', reset)
+    return () => {
+      window.removeEventListener('pointermove', trackCursor)
+      window.removeEventListener('blur', reset)
+      if (frame) window.cancelAnimationFrame(frame)
+    }
+  }, [])
 
-  return <aside className="pf-avatar-welcome" aria-label="Pallav's speaking avatar">
+  return <aside className="pf-avatar-welcome" aria-label="Pallav's welcome avatar">
     <div className="pf-avatar-card">
-      <div className="pf-avatar-image-wrap" onPointerMove={trackEyes} onPointerLeave={() => setPupil({ x: 0, y: 0 })}>
-        <img src="/pallav_avatar.jpg" alt="Pallav wearing a black sweatshirt with a bronze N emblem" className="pf-avatar-image" />
-        <span className="pf-avatar-eye pf-avatar-eye-left"><i style={{ transform: `translate(${pupil.x * 2.4}px, ${pupil.y * 1.8}px)` }} /></span>
-        <span className="pf-avatar-eye pf-avatar-eye-right"><i style={{ transform: `translate(${pupil.x * 2.4}px, ${pupil.y * 1.8}px)` }} /></span>
-        <span className="pf-avatar-live"><i /> LIVE AVATAR</span>
+      <div className="pf-avatar-image-wrap">
+        <img
+          src="/pallav-avatar.jpg"
+          alt="Pallav wearing a black sweatshirt with a bronze N emblem"
+          className="pf-avatar-image"
+          style={{ transform: `perspective(900px) rotateY(${look.x * 3.5}deg) rotateX(${-look.y * 2.5}deg) scale(1.07) translate(${look.x * 3}px, ${look.y * 2}px)` }}
+        />
+        <span className="pf-avatar-live"><i /> HERE WITH YOU</span>
       </div>
       <div className="pf-avatar-message">
         <span className="pf-avatar-label">A QUICK HELLO FROM PALLAV</span>
