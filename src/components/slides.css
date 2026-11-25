@@ -515,3 +515,9 @@ button,a{font:inherit}
 .project-card-cta svg{transition:transform .2s}
 .project-card-link:hover .project-card-cta svg{transform:translate(3px,-2px)}
 @media(max-width:760px){.project-grid{grid-template-columns:1fr;max-height:48vh;gap:12px}.project-image-wrap{height:150px}.project-card p{font-size:12px}.project-open-label{opacity:1;transform:none}}
+
+/* GitHub Sponsors embed */
+.github-sponsor-panel{display:flex;align-items:center;justify-content:space-between;gap:24px;margin:22px 0 12px;padding:20px 22px;border:1px solid #d9c28a44;background:linear-gradient(120deg,#17231ddd,#111a16e8);backdrop-filter:blur(14px);border-radius:14px;}
+.github-sponsor-copy{flex:1;min-width:0}.sponsor-eyebrow{font:8px 'DM Mono',monospace;letter-spacing:.16em;color:#d8c18a}.github-sponsor-copy h3{margin:7px 0;color:#f4f0e6;font-size:20px}.github-sponsor-copy p{max-width:390px;margin:0 0 14px;color:#c4c5b3;font-size:11px;line-height:1.6}.github-sponsor-button{display:block;width:114px;height:32px;border:0;border-radius:6px;background:transparent}.github-sponsor-card{display:block;width:min(600px,100%);max-width:600px;height:225px;border:0;border-radius:10px;background:#fff;flex:0 1 600px}
+@media(max-width:900px){.github-sponsor-panel{flex-direction:column;align-items:flex-start}.github-sponsor-card{width:100%;max-width:600px;align-self:center}}
+@media(max-width:600px){.github-sponsor-panel{padding:16px;margin-top:16px}.github-sponsor-card{height:225px}}
