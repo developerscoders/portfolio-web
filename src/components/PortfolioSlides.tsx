@@ -132,7 +132,7 @@ function ChapterContent({ index, goTo }: { index: number; goTo: (n: number) => v
     <div className="finale-links"><a href="mailto:pallavburnwal@gmail.com"><Mail size={15} /> pallavburnwal@gmail.com</a><a href="https://github.com/developerscoders" target="_blank" rel="noreferrer"><Github size={15} /> GITHUB <ExternalLink size={11} /></a><a href="https://linkedin.com/in/pallavburnwal" target="_blank" rel="noreferrer"><Linkedin size={15} /> LINKEDIN <ExternalLink size={11} /></a></div>
     <section className="github-sponsor-panel" aria-labelledby="github-sponsor-title">
       <div className="github-sponsor-copy"><span className="sponsor-eyebrow">SUPPORT OPEN-SOURCE BUILDING</span><h3 id="github-sponsor-title">Enjoy what I build?</h3><p>If my projects, tools or experiments have been useful, you can support my work through GitHub Sponsors.</p>
-        <iframe className="github-sponsor-button" src="https://github.com/sponsors/developerscoders/button" title="Sponsor developerscoders" width="114" height="32" loading="lazy" />
+        <a className="github-sponsor-button" href="https://github.com/sponsors/developerscoders" target="_blank" rel="noopener noreferrer" aria-label="Sponsor Pallav Burnwal on GitHub"><span aria-hidden="true">♡</span> Sponsor on GitHub <ArrowUpRight size={13} /></a>
       </div>
       <div className="github-sponsor-visual" role="img" aria-label="Illustration of a developer working at a computer in a modern workspace">
         <img src="/projects/developer-workspace.svg" alt="" loading="lazy" />
