@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+<title id="title">Developer workspace illustration</title><desc id="desc">A developer working at a multi-monitor desk in a modern studio.</desc>
+<defs>
+ <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#0a2433"/><stop offset=".55" stop-color="#102d36"/><stop offset="1" stop-color="#1b3028"/></linearGradient>
+ <linearGradient id="screen" x2="1" y2="1"><stop stop-color="#142e4b"/><stop offset="1" stop-color="#071421"/></linearGradient>
+ <linearGradient id="glow" x2="1"><stop stop-color="#50d6e5" stop-opacity=".1"/><stop offset="1" stop-color="#9b8cff" stop-opacity=".25"/></linearGradient>
+ <filter id="blur"><feGaussianBlur stdDeviation="28"/></filter>
+</defs>
+<rect width="1200" height="520" fill="url(#bg)"/><circle cx="940" cy="115" r="180" fill="#4aafbd" opacity=".14" filter="url(#blur)"/><circle cx="210" cy="90" r="160" fill="#416c9c" opacity=".22" filter="url(#blur)"/>
+<path d="M0 390H1200V520H0Z" fill="#081720"/><path d="M40 0V390M310 0V390M920 0V390" stroke="#b4d8d7" opacity=".09" stroke-width="3"/>
+<rect x="65" y="65" width="245" height="220" rx="10" fill="#102630" stroke="#7ab9c0" stroke-opacity=".25"/><path d="M90 100h190M90 126h130M90 152h160" stroke="#6ca9b8" opacity=".35" stroke-width="5" stroke-linecap="round"/>
+<rect x="410" y="82" width="530" height="280" rx="14" fill="#07111d" stroke="#6bd9e6" stroke-opacity=".45" stroke-width="3"/><rect x="426" y="98" width="498" height="248" rx="7" fill="url(#screen)"/>
+<path d="M455 128h110M455 153h190M455 178h150M455 203h230M455 228h165M455 253h250M455 278h190" stroke="#64d9e8" stroke-width="5" stroke-linecap="round" opacity=".75"/><path d="M700 128h160M720 153h120M680 178h180M710 203h150M690 228h170M730 253h130M700 278h160" stroke="#b59cff" stroke-width="4" stroke-linecap="round" opacity=".6"/>
+<rect x="620" y="362" width="110" height="28" fill="#253d48"/><path d="M565 393h220l34 14H530Z" fill="#304b55"/>
+<!-- seated developer -->
+<path d="M780 240c-12-75 29-139 92-145 65-7 106 47 100 119l-12 76-173 5Z" fill="#111d2a"/><ellipse cx="876" cy="157" rx="67" ry="77" fill="#9b684f"/><path d="M811 150c-8-70 37-109 91-94 39 10 62 43 55 88-24-24-43-43-69-46-26 27-45 43-77 52Z" fill="#101722"/><path d="M825 160q25-15 46 0M887 159q23-14 44 1" stroke="#14202c" stroke-width="8" fill="none"/><path d="M857 195q21 17 44-1" stroke="#56372e" stroke-width="4" fill="none"/>
+<path d="M782 246q93-52 183 8l75 138H720Z" fill="#172b3b"/><path d="M755 278q-57 42-80 104l-65 8q-14-12 4-27l80-91" fill="#203b4b"/><path d="M930 270q48 30 82 100l-42 18q-53-50-82-93" fill="#203b4b"/>
+<path d="M0 415h1200" stroke="#c0a879" stroke-opacity=".3" stroke-width="3"/><rect x="155" y="418" width="910" height="18" rx="8" fill="#6b5541"/><path d="M220 436v84m790-84v84" stroke="#493b32" stroke-width="13"/>
+<rect x="820" y="393" width="125" height="12" rx="5" fill="#111a24"/><path d="M850 390l-15-22m40 22-15-22m40 22-15-22" stroke="#6ad4df" stroke-width="3" opacity=".7"/>
+<rect x="1000" y="305" width="72" height="88" rx="8" fill="#172a2d"/><path d="M1035 305q-55-40-28-92 50 16 28 92m0 0q-10-64 39-78 15 48-39 78" fill="#4c9c79"/>
+<circle cx="1080" cy="70" r="34" fill="#e5bd79" opacity=".7"/><path d="M0 0h1200v520H0Z" fill="url(#glow)" opacity=".55"/>
+</svg>

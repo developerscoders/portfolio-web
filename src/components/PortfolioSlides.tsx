@@ -134,7 +134,10 @@ function ChapterContent({ index, goTo }: { index: number; goTo: (n: number) => v
       <div className="github-sponsor-copy"><span className="sponsor-eyebrow">SUPPORT OPEN-SOURCE BUILDING</span><h3 id="github-sponsor-title">Enjoy what I build?</h3><p>If my projects, tools or experiments have been useful, you can support my work through GitHub Sponsors.</p>
         <iframe className="github-sponsor-button" src="https://github.com/sponsors/developerscoders/button" title="Sponsor developerscoders" width="114" height="32" loading="lazy" />
       </div>
-      <iframe className="github-sponsor-card" src="https://github.com/sponsors/developerscoders/card" title="Sponsor developerscoders" width="600" height="225" loading="lazy" />
+      <div className="github-sponsor-visual" role="img" aria-label="Illustration of a developer working at a computer in a modern workspace">
+        <img src="/projects/developer-workspace.svg" alt="" loading="lazy" />
+        <div className="github-sponsor-visual-caption"><span>BUILDING IN PUBLIC</span><strong>Ideas into impact.</strong><small>Open-source · AI · Developer tools</small></div>
+      </div>
     </section>
     <div className="finale-signoff">THANK YOU FOR STAYING A WHILE <span>✳</span></div>
   </div>
