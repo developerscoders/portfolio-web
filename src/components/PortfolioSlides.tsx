@@ -130,6 +130,12 @@ function ChapterContent({ index, goTo }: { index: number; goTo: (n: number) => v
     <p className="chapter-lead">I’m open to full-time developer opportunities and collaborations across full-stack engineering, AI and product development. Send me a message and let’s talk.</p>
     <ContactForm />
     <div className="finale-links"><a href="mailto:pallavburnwal@gmail.com"><Mail size={15} /> pallavburnwal@gmail.com</a><a href="https://github.com/developerscoders" target="_blank" rel="noreferrer"><Github size={15} /> GITHUB <ExternalLink size={11} /></a><a href="https://linkedin.com/in/pallavburnwal" target="_blank" rel="noreferrer"><Linkedin size={15} /> LINKEDIN <ExternalLink size={11} /></a></div>
+    <section className="github-sponsor-panel" aria-labelledby="github-sponsor-title">
+      <div className="github-sponsor-copy"><span className="sponsor-eyebrow">SUPPORT OPEN-SOURCE BUILDING</span><h3 id="github-sponsor-title">Enjoy what I build?</h3><p>If my projects, tools or experiments have been useful, you can support my work through GitHub Sponsors.</p>
+        <iframe className="github-sponsor-button" src="https://github.com/sponsors/developerscoders/button" title="Sponsor developerscoders" width="114" height="32" loading="lazy" />
+      </div>
+      <iframe className="github-sponsor-card" src="https://github.com/sponsors/developerscoders/card" title="Sponsor developerscoders" width="600" height="225" loading="lazy" />
+    </section>
     <div className="finale-signoff">THANK YOU FOR STAYING A WHILE <span>✳</span></div>
   </div>
 }
